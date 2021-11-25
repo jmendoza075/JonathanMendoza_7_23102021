@@ -1,8 +1,8 @@
-# Project 7 : Openclassrooms
-
-## Run the Frontend
+## Run the FRONTEND
 
 In the project directory, you can run:
+
+### `cd groupomania_frontend`
 
 ### `npm start`
 

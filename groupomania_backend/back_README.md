@@ -1,9 +1,11 @@
 # Project 7 : Openclassrooms
 
-## Run the Frontend
+## Run the BACKEND
 
 In the project directory, you can run:
 
+### `cd groupomania_backend`
+
 ### `npm start`
 
-Runs the app in (http://localhost:3000) to view it in the browser.
+Runs the app and listen on port (http://localhost:8081) .

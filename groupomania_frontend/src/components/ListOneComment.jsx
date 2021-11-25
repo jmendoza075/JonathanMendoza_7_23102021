@@ -35,7 +35,7 @@ export default function ListOneComment() {
 			.delete(`${url}${params.id}`)
 			.then((response) => {
 				console.log(`comment ${params_id} deleted`);
-				navigate('/comments');
+				navigate('/');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};

@@ -22,7 +22,7 @@ const EditComment = () => {
 			.put(`${url}${params.id}`, put)
 			.then((response) => {
 				console.log(`Comment ${params_id} modified`);
-				navigate('/comments');
+				navigate('/');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};

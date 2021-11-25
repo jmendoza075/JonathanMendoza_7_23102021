@@ -67,8 +67,7 @@ const NewComment = () => {
 			<p>Commented by {utilisateur_id}</p>
 			<form onSubmit={handleSubmit} className="row g-3">
 				<label>Type your comment here </label>
-				<input
-					type="text"
+				<textarea
 					required
 					value={comment}
 					onChange={(e) => setComment(e.target.value)}

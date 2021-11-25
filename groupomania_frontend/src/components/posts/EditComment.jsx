@@ -60,7 +60,7 @@ const EditComment = () => {
 						Cancel
 					</button>
 
-					<button className="btn btn-primary">Modify Post</button>
+					<button className="btn btn-primary">Modify Comment</button>
 				</div>
 			</form>
 		</div>

@@ -22,7 +22,7 @@ const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
 				activeclassname="active"
 				style={{ textDecoration: 'none' }}
 			>
-				<h3>{titre}</h3>
+				<h2>{titre}</h2>
 				<p>POST # {id} </p>
 				<p>done by user {utilisateur}</p>
 
@@ -36,7 +36,7 @@ const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
 			</button>
 
 			<button onClick={handleComment} className="btn btn-primary">
-				click to comment
+				Click to comment
 			</button>
 		</li>
 	);

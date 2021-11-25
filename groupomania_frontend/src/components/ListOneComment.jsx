@@ -41,17 +41,16 @@ export default function ListOneComment() {
 	};
 
 	return (
-		<div className="container ">
-			<h2>Single Comment # id {params_id}</h2>
+		<div className="container mt-3 ">
+			<h3>Comment # id {params_id}</h3>
 			<div>
 				{comment.map((myComment) => (
 					<div key={myComment.id}>
-						<h2>
-							myComment id: {myComment.id} {myComment.comment}{' '}
-						</h2>
+						<p>{myComment.comment} </p>
 						<p>by user id: {myComment.utilisateur_id}</p>
-						<span>on {myComment.date_cre}</span>
-						<span> about post id{myComment.publication_id}</span>
+
+						<small>about post id: {myComment.publication_id}</small>
+						<small> on: {myComment.date_cre}</small>
 					</div>
 				))}
 			</div>

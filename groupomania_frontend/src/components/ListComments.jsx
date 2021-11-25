@@ -1,9 +1,9 @@
 import ShowComments from './ShowComments';
 
-const ListComments = (props) => {
+const ListComments = ({ comments }) => {
 	return (
 		<div>
-			{props.comments.map((comment) => (
+			{comments.map((comment) => (
 				<ShowComments
 					key={comment.id}
 					comment={comment.comment}

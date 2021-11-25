@@ -5,12 +5,12 @@ function Navlogo() {
 		<div className="navbar-brand">
 			<img
 				src={logo}
-				alt="Grupomania logo"
+				alt="Groupomania logo"
 				width="50"
 				height="50"
 				className="d-inline-block align-text-center"
 			/>
-			Grupomania
+			Groupomania
 		</div>
 	);
 }

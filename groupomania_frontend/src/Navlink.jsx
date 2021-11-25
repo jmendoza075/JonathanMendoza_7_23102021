@@ -16,12 +16,7 @@ export default function Navlink() {
 				<Link to="/users" className="nav-link">
 					All Users
 				</Link>
-				<Link to="/publications" className="nav-link">
-					All Publications
-				</Link>{' '}
-				<Link to="/comments" className="nav-link">
-					All Comments
-				</Link>
+
 				<Link to="/publications/add" className="nav-link">
 					New Post
 				</Link>

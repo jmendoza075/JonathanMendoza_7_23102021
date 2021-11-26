@@ -1,47 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import User from '../components/User';
+import axios from 'axios';
+import ShowUsers from '../components/ShowUsers';
 
 export default function Users() {
-	const [users, setUser] = useState([]);
+	const url = 'http://localhost:8081/api/user';
+	const [users, getUsers] = useState([]);
 
 	useEffect(() => {
-		getAllUsers();
-	}, []);
-
-	function getAllUsers() {
-		fetch('http://localhost:8081/api/user')
-			.then((result) => {
-				result.json().then((resp) => {
-					console.log(resp);
-					setUser(resp);
-
-					console.log(resp[0].email);
-				});
+		axios
+			.get(`${url}`)
+			.then((response) => {
+				const allUsers = response.data;
+				getUsers(allUsers);
+				console.log(allUsers);
 			})
 			.catch((error) => {
 				console.error(`Error:${error}`);
 			});
-	}
-	///Child Component
-	const usersList = users.map(({ email, id, nom, prenom, password }) => (
-		<li key={id} className="list-group-item list-group-item-primary mt-3">
-			<User
-				allUsers={users}
-				addUser={setUser}
-				nom={nom}
-				prenom={prenom}
-				id={id}
-				email={email}
-				password={password}
-			/>
-		</li>
-	));
+	}, []);
 
 	return (
 		<div className="container">
-			<h2>Users count: {users.length} </h2>
-
-			<ul className="list-group">{usersList}</ul>
+			<h2>Users</h2>
+			{users.map((user) => (
+				<ShowUsers
+					key={user.id}
+					email={user.email}
+					id={user.id}
+					nom={user.nom}
+					prenom={user.prenom}
+					password={user.password}
+				/>
+			))}
 		</div>
 	);
 }

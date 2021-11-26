@@ -11,6 +11,7 @@ import ListOnePost from './components/ListOnePost';
 import ListOneComment from './components/ListOneComment';
 import ListOneUser from './components/ListOneUser';
 
+import Welcome from './components/users/Welcome';
 import Login from './components/users/Login';
 import SignUp from './components/users/SignUp';
 import EditUser from './components/users/EditUser';
@@ -38,6 +39,8 @@ export default function App() {
 					<Route path="users" element={<Users />} />
 					<Route path="users/:id" element={<ListOneUser />} />
 					<Route path="users/edit/:id" element={<EditUser />} />
+
+					<Route path="users/welcome" element={<Welcome />} />
 					<Route path="users/signup" element={<SignUp />} />
 
 					<Route path="publications" element={<Publications />} />

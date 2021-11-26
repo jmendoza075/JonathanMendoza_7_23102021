@@ -35,7 +35,7 @@ const SignUp = () => {
 
 	return (
 		<div className="container mt-3">
-			<h3>S'inscrire</h3>
+			<h2>S'inscrire</h2>
 			<form onSubmit={handleSubmit} className="row g-3">
 				<div className="form-group">
 					<label>Prenom</label>

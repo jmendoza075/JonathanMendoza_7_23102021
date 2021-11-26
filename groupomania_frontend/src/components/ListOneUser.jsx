@@ -22,12 +22,12 @@ export default function ListOneUser() {
 			.catch((error) => console.error(`Error:${error}`));
 	}, [params.id]);
 
-	const handleClick = () => {
+	const handleDelete = () => {
 		axios
 			.delete(`${url}${params.id}`)
 			.then((response) => {
 				console.log(`user ${params_id} deleted`);
-				navigate('/comments');
+				navigate('/users');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};
@@ -63,7 +63,7 @@ export default function ListOneUser() {
 			<button onClick={handleModify} className="btn btn-outline-secondary ">
 				Modify
 			</button>
-			<button onClick={handleClick} className="btn btn-primary btn-block">
+			<button onClick={handleDelete} className="btn btn-primary btn-block">
 				Delete
 			</button>
 		</div>

@@ -1,9 +1,4 @@
-//import { useNavigate } from 'react-router-dom';
-
 const Logout = () => {
-	//const navigate = useNavigate();
-
-	// logout the user
 	const handleLogout = () => {
 		localStorage.clear();
 

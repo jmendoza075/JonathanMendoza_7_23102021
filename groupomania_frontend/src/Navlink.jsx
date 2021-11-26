@@ -10,10 +10,10 @@ export default function Navlink() {
 				<Link to="/" className="nav-link">
 					<Navlogo />
 				</Link>
-				<Link to="users/welcome" className="nav-link">
-					Welcome Page
+				<Logout />
+				<Link to="/users/signup" className="nav-link">
+					SignUp
 				</Link>
-
 				<Link to="/users" className="nav-link">
 					All Users
 				</Link>
@@ -21,7 +21,6 @@ export default function Navlink() {
 				<Link to="/publications/add" className="nav-link">
 					New Post
 				</Link>
-				<Logout />
 			</nav>
 			<Outlet />
 		</div>

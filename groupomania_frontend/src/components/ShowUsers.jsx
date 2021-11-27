@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const ShowUsers = (props) => (
 	<ul className="list-group">
 		<li className="list-group-item list-group-item-primary mt-3">
-			<Link to={`/users/${props.id}`} activeclassname="active">
+			<Link to={`/private/users/${props.id}`} activeclassname="active">
 				<span>{props.id}`</span>
 				<h3>
 					{props.prenom} {props.nom}

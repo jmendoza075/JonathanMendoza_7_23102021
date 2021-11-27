@@ -25,11 +25,11 @@ export default function OnePost() {
 	}, [params.id]);
 
 	const handleCancel = () => {
-		navigate('/');
+		navigate('/private/home');
 	};
 
 	const handleModify = () => {
-		navigate(`/publications/edit/${params.id}`);
+		navigate(`/private/publications/edit/${params.id}`);
 	};
 
 	const handleDelete = () => {
@@ -37,7 +37,7 @@ export default function OnePost() {
 			.delete(`${url}${params.id}`)
 			.then((response) => {
 				console.log(`post ${params_id} deleted`);
-				navigate('/');
+				navigate('/private/home');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};

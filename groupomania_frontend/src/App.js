@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+	BrowserRouter,
+	Routes,
+	Route,
+	Outlet,
+	Navigate,
+} from 'react-router-dom';
 
 import Navlink from './Navlink';
 import Home from './routes/home';
@@ -11,7 +17,6 @@ import ListOnePost from './components/ListOnePost';
 import ListOneComment from './components/ListOneComment';
 import ListOneUser from './components/ListOneUser';
 
-import Welcome from './routes/Welcome';
 import Login from './routes/Login';
 import SignUp from './routes/SignUp';
 
@@ -21,32 +26,46 @@ import EditPost from './components/posts/EditPost';
 import NewComment from './components/posts/NewComment';
 import EditComment from './components/posts/EditComment';
 
+import Test from './components/Test';
+import RootPage from './components/RootPage';
+
 export default function App() {
+	function PrivateOutlet() {
+		const auth = useAuth();
+		return auth ? <Outlet /> : <Navigate to="/test" />;
+	}
+
+	function useAuth() {
+		return true;
+	}
+
 	return (
 		<div>
 			<BrowserRouter>
 				<Navlink />
 				<Routes>
-					<Route path="/" exact element={<Welcome />} />
+					<Route path="/" exact element={<RootPage />} />
 					<Route path="/login" exact element={<Login />} />
 					<Route path="/signup" element={<SignUp />} />
+					<Route path="/test" element={<Test />} />
 
-					<Route path="/home" element={<Home />} />
-					<Route path="/users" element={<Users />} />
-					<Route path="/users/:id" element={<ListOneUser />} />
-					<Route path="/users/edit/:id" element={<EditUser />} />
+					<Route path="/private" element={<PrivateOutlet />}>
+						<Route path="home" element={<Home />} />
+						<Route path="users" element={<Users />} />
 
-					<Route path="/welcome" element={<Welcome />} />
+						<Route path="users/:id" element={<ListOneUser />} />
+						<Route path="users/edit/:id" element={<EditUser />} />
 
-					<Route path="/publications" element={<Publications />} />
-					<Route path="/publications/:id" element={<ListOnePost />} />
-					<Route path="/publications/add" element={<NewPost />} />
-					<Route path="/publications/edit/:id" element={<EditPost />} />
+						<Route path="publications" element={<Publications />} />
+						<Route path="publications/:id" element={<ListOnePost />} />
+						<Route path="publications/add" element={<NewPost />} />
+						<Route path="publications/edit/:id" element={<EditPost />} />
 
-					<Route path="/comments" element={<Comments />} />
-					<Route path="/comments/comment/:id" element={<NewComment />} />
-					<Route path="/comments/:id" element={<ListOneComment />} />
-					<Route path="/comments/edit/:id" element={<EditComment />} />
+						<Route path="comments" element={<Comments />} />
+						<Route path="comments/comment/:id" element={<NewComment />} />
+						<Route path="comments/:id" element={<ListOneComment />} />
+						<Route path="comments/edit/:id" element={<EditComment />} />
+					</Route>
 
 					<Route
 						path="*"

@@ -23,11 +23,11 @@ export default function ListOneComment() {
 	}, [params.id]);
 
 	const handleCancel = () => {
-		navigate('/');
+		navigate('/private/home');
 	};
 
 	const handleModify = () => {
-		navigate(`/comments/edit/${params.id}`);
+		navigate(`/private/comments/edit/${params.id}`);
 	};
 
 	const handleDelete = () => {
@@ -35,7 +35,7 @@ export default function ListOneComment() {
 			.delete(`${url}${params.id}`)
 			.then((response) => {
 				console.log(`comment ${params_id} deleted`);
-				navigate('/');
+				navigate('/private/home');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};

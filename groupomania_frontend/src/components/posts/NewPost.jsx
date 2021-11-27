@@ -25,7 +25,7 @@ const NewPost = () => {
 		})
 			.then(() => {
 				setIsPending(false);
-				navigate('/');
+				navigate('/private/home');
 			})
 			.catch((error) => {
 				console.error('Error:', error);
@@ -34,7 +34,7 @@ const NewPost = () => {
 	};
 
 	const handleCancel = () => {
-		navigate('/home');
+		navigate('/private/home');
 	};
 
 	return (

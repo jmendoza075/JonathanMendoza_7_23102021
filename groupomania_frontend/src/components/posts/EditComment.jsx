@@ -22,13 +22,13 @@ const EditComment = () => {
 			.put(`${url}${params.id}`, put)
 			.then((response) => {
 				console.log(`Comment ${params_id} modified`);
-				navigate('/');
+				navigate('/private/home');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};
 
 	const handleCancel = () => {
-		navigate('/');
+		navigate('/private/home');
 	};
 
 	return (

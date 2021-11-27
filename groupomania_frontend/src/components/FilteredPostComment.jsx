@@ -37,7 +37,7 @@ export default function FilteredPostComment({ postId }) {
 						<p></p>
 
 						<Link
-							to={`/comments/${filteredComment.id}`}
+							to={`/private/comments/${filteredComment.id}`}
 							activeclassname="active"
 							style={{ textDecoration: 'none' }}
 						>

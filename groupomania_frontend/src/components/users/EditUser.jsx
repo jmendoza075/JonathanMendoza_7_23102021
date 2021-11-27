@@ -31,7 +31,7 @@ const EditUser = () => {
 
 	// Buttons
 	const handleCancel = () => {
-		navigate('/');
+		navigate('/private/home');
 	};
 
 	const updateUser = () => {

@@ -7,17 +7,17 @@ const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
 		localStorage.setItem('PostID', id);
 		localStorage.setItem('Titre', titre);
 
-		navigate(`/comments/comment/${id}`);
+		navigate(`/private/comments/comment/${id}`);
 	};
 
 	const handleModify = () => {
-		navigate(`/publications/edit/${id}`);
+		navigate(`/private/publications/edit/${id}`);
 	};
 
 	return (
 		<li className="list-group-item list-group-item-primary mt-3 btn p-2">
 			<Link
-				to={`/publications/${id}`}
+				to={`/private/publications/${id}`}
 				activeclassname="active"
 				style={{ textDecoration: 'none' }}
 			>

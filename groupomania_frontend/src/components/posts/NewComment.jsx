@@ -47,7 +47,7 @@ const NewComment = () => {
 		})
 			.then(() => {
 				setIsPending(false);
-				navigate('/');
+				navigate('/private/home/');
 			})
 			.catch((error) => {
 				console.error('Error:', error);
@@ -56,7 +56,7 @@ const NewComment = () => {
 	};
 
 	const handleCancel = () => {
-		navigate('/');
+		navigate('/private/home');
 	};
 
 	return (

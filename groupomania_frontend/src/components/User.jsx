@@ -14,7 +14,7 @@ const User = ({
 }) => {
 	const navigate = useNavigate();
 	const handleClick = () => {
-		navigate(`/users/edit/${id}`);
+		navigate(`/private/users/edit/${id}`);
 	};
 
 	return (

@@ -4,7 +4,7 @@ const ShowComments = (props) => (
 	<ul className="list-group">
 		<li className="list-group-item list-group-item-primary mt-3 btn">
 			<Link
-				to={`/comments/${props.id}`}
+				to={`/private/comments/${props.id}`}
 				activeclassname="active"
 				style={{ textDecoration: 'none' }}
 			>

@@ -1,6 +1,7 @@
 import SignUp from './SignUp';
 import axios from 'axios';
 import useToken from '../custom_hook/useToken';
+import { Link } from 'react-router-dom';
 
 const Welcome = () => {
 	const { token, setToken } = useToken();
@@ -12,7 +13,14 @@ const Welcome = () => {
 			<h4>Please SIGN IN to register </h4>
 			<SignUp setToken={setToken} />
 			<hr />
-			<small>Or LOG IN </small>
+
+			<Link
+				to="/home"
+				activeclassname="active"
+				style={{ textDecoration: 'none' }}
+			>
+				<small>Ou CONNECTEZ-VOUS si vous êtes déjà inscrit</small>
+			</Link>
 		</div>
 	);
 };

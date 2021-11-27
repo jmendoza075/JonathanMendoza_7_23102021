@@ -20,7 +20,14 @@ const Test = () => {
 		setAge(30);
 	};
 	return (
-		<div>
+		<div className="container mt-3">
+			<h1>
+				Helo you arrive here because you are not Logged in with good credentials
+			</h1>
+
+			<hr />
+			<hr />
+
 			<h2>Hello Test Page for State</h2>
 			<h3>counter {counter}</h3>
 			<button onClick={incrementer}>click</button>

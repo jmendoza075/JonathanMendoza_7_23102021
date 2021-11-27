@@ -27,17 +27,17 @@ export default function ListOneUser() {
 			.delete(`${url}${params.id}`)
 			.then((response) => {
 				console.log(`user ${params_id} deleted`);
-				navigate('/users');
+				navigate('/private/users');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};
 
 	const handleModify = () => {
-		navigate(`/users/edit/${params.id}`);
+		navigate(`/private/users/edit/${params.id}`);
 	};
 
 	const handleCancel = () => {
-		navigate('/home');
+		navigate('/private/home');
 	};
 
 	return (

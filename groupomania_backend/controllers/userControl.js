@@ -21,7 +21,9 @@ exports.signup = async (req, res) => {
 		.then(() =>
 			res.status(201).json({ user: user.email, message: 'user enregistré !' })
 		)
-		.catch((error) => res.status(400).json({ error }));
+		.catch((error) =>
+			res.status(400).json({ error: `L'email est déjà utilisé !` })
+		);
 };
 
 ///lOGIN

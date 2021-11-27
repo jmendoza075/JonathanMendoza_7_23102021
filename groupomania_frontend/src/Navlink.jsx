@@ -1,7 +1,7 @@
 import { Outlet, Link } from 'react-router-dom';
 
 import Navlogo from './components/NavLogo';
-import Logout from './components/users/Logout';
+import Logout from './routes/Logout';
 
 export default function Navlink() {
 	return (
@@ -11,9 +11,7 @@ export default function Navlink() {
 					<Navlogo />
 				</Link>
 				<Logout />
-				<Link to="/users/signup" className="nav-link">
-					SignUp
-				</Link>
+
 				<Link to="/users" className="nav-link">
 					All Users
 				</Link>

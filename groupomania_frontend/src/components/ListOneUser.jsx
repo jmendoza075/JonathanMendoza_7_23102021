@@ -37,7 +37,7 @@ export default function ListOneUser() {
 	};
 
 	const handleCancel = () => {
-		navigate('/');
+		navigate('/home');
 	};
 
 	return (

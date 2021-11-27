@@ -34,7 +34,7 @@ const NewPost = () => {
 	};
 
 	const handleCancel = () => {
-		navigate('/');
+		navigate('/home');
 	};
 
 	return (

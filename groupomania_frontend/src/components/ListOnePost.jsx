@@ -7,13 +7,12 @@ import FilteredPostComment from './FilteredPostComment';
 export default function OnePost() {
 	const params = useParams();
 	const params_id = params.id;
-
-	const url = 'http://localhost:8081/api/publication/';
-
-	const [post, setPost] = useState([]);
-
 	const navigate = useNavigate();
 
+	const url = 'http://localhost:8081/api/publication/';
+	const [post, setPost] = useState([]);
+
+	//Get and Loads data from API
 	useEffect(() => {
 		axios
 			.get(`${url}${params.id}`)
@@ -24,14 +23,13 @@ export default function OnePost() {
 			.catch((error) => console.error(`Error:${error}`));
 	}, [params.id]);
 
+	//Buttons function
 	const handleCancel = () => {
 		navigate('/private/home');
 	};
-
 	const handleModify = () => {
 		navigate(`/private/publications/edit/${params.id}`);
 	};
-
 	const handleDelete = () => {
 		axios
 			.delete(`${url}${params.id}`)
@@ -45,15 +43,13 @@ export default function OnePost() {
 	return (
 		<div className="container mt-3 ">
 			<div>
-				{post.map((myPost) => (
-					<div key={myPost.id}>
-						<h2>{myPost.titre} </h2>
-						<p>Posted by user ID: {myPost.utilisateur_id}</p>
-						<p>Post id #: {myPost.id}</p>
-						<p>{myPost.text}</p>
-						<p>on {myPost.date_cre}</p>
-
-						<p> {myPost.comment}</p>
+				{post.map((mapPost) => (
+					<div key={mapPost.id}>
+						<h2>{mapPost.titre} </h2>
+						<p>Posted by user ID: {mapPost.utilisateur_id}</p>
+						<p>Post id #: {mapPost.id}</p>
+						<p>{mapPost.text}</p>
+						<p>on {mapPost.date_cre}</p>
 					</div>
 				))}
 			</div>

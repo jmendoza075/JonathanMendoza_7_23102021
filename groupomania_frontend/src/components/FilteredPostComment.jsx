@@ -6,6 +6,7 @@ export default function FilteredPostComment({ postId }) {
 	const url = 'http://localhost:8081/api/commentaire';
 	const [comments, getComments] = useState([]);
 
+	// Get all comments for a single post
 	useEffect(() => {
 		axios
 			.get(`${url}`)

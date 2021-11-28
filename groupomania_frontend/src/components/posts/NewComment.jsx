@@ -5,38 +5,34 @@ import { useParams } from 'react-router-dom';
 const NewComment = () => {
 	const params = useParams();
 	const params_id = params.id;
-	const [isPending, setIsPending] = useState(false);
-
 	const navigate = useNavigate();
 
-	//Get Post data from Local Storage
+	//Comment to Post to API
 	const [title, setTitle] = useState('');
-
-	useEffect(() => {
-		setTitle(localStorage.getItem('Titre'));
-		setPublication_id(localStorage.getItem('PostID'));
-
-		getToken();
-	}, []);
-
-	const getToken = () => {
-		const tokenString = localStorage.getItem('token');
-		const userToken = JSON.parse(tokenString);
-
-		setUtilisateur_id(userToken.userId);
-	};
-
-	//Coment to Post to API
 	const [publication_id, setPublication_id] = useState('');
 	const [comment, setComment] = useState('');
-	const [utilisateur_id, setUtilisateur_id] = useState('');
+
 	const [date_cre, setDate_cre] = useState('');
+
+	//Get Post Title from Local Storage
+	useEffect(() => {
+		getPost();
+	}, []);
+
+	//extract the UserId, Title and PostId from the Local Storage
+	const userToken = JSON.parse(localStorage.getItem('token'));
+	const utilisateur_id = userToken.userId;
+
+	const getPost = () => {
+		const Titre = localStorage.getItem('Titre');
+		const PostID = localStorage.getItem('PostID');
+		setTitle(Titre);
+		setPublication_id(PostID);
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const postComment = { comment, publication_id, utilisateur_id, date_cre };
-
-		setIsPending(true);
 
 		fetch('http://localhost:8081/api/commentaire/', {
 			method: 'POST',
@@ -46,7 +42,6 @@ const NewComment = () => {
 			body: JSON.stringify(postComment),
 		})
 			.then(() => {
-				setIsPending(false);
 				navigate('/private/home/');
 			})
 			.catch((error) => {
@@ -62,9 +57,9 @@ const NewComment = () => {
 	return (
 		<div className="container mb-3 mt-3">
 			<h2>
-				Commenting on post # {params_id} {title}{' '}
+				Commenting on post # {params_id}: {title}{' '}
 			</h2>
-			<p>Commented by {utilisateur_id}</p>
+			<p>Commented by User ID: {utilisateur_id}</p>
 			<form onSubmit={handleSubmit} className="row g-3">
 				<label>Type your comment here </label>
 				<textarea
@@ -90,10 +85,7 @@ const NewComment = () => {
 						Cancel{' '}
 					</button>
 
-					{!isPending && (
-						<button className="btn btn-primary">Add Comment</button>
-					)}
-					{isPending && <button disabled>Adding Comment...</button>}
+					<button className="btn btn-primary">Add Comment</button>
 				</div>
 			</form>
 		</div>

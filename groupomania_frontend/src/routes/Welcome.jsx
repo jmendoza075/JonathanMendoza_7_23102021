@@ -15,7 +15,7 @@ const Welcome = () => {
 			<hr />
 
 			<Link
-				to="/home"
+				to="/private/home"
 				activeclassname="active"
 				style={{ textDecoration: 'none' }}
 			>

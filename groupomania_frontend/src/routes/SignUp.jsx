@@ -1,46 +1,45 @@
 import { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
-async function signUpUser(credentials) {
-	return fetch('http://localhost:8081/api/user/signup', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(credentials),
-	})
-		.then((data) => data.json())
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-}
-
-export default function SignUp() {
+const SignUp = () => {
 	const [prenom, setPrenom] = useState('');
 	const [nom, setNom] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPswd] = useState('');
 
+	const [error, setError] = useState(null);
+
 	const navigate = useNavigate();
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		const user = await signUpUser({
-			email,
-			password,
-			nom,
-			prenom,
-		});
+		const post = { prenom, nom, email, password };
 
-		console.log(user);
+		fetch('http://localhost:8081/api/user/signup', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(post),
+		})
+			.then((res) => {
+				console.log(res);
+				if (!res.ok) {
+					throw Error('Email déjà utilisée');
+				}
+				alert('Inscription réussie, veuillez vous connecter');
+				navigate('/login');
+			})
 
-		navigate('/home');
+			.catch((error) => {
+				console.error('Error:', error);
+				setError(error.message);
+			});
 	};
 
 	return (
 		<div className="container mt-3">
-			<h2>S'inscrire</h2>
+			<h3>S'inscrire</h3>
 			<form onSubmit={handleSubmit} className="row g-3">
 				<div className="form-group">
 					<label>Prenom</label>
@@ -65,7 +64,11 @@ export default function SignUp() {
 						onChange={(e) => setNom(e.target.value)}
 					/>
 				</div>
-
+				{error && (
+					<div className="alert alert-danger" role="alert">
+						{error}{' '}
+					</div>
+				)}
 				<div className="form-group">
 					<label>Email</label>
 					<input
@@ -96,4 +99,6 @@ export default function SignUp() {
 			</form>
 		</div>
 	);
-}
+};
+
+export default SignUp;

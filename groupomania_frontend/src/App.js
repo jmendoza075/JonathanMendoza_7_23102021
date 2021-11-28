@@ -27,7 +27,8 @@ import NewComment from './components/posts/NewComment';
 import EditComment from './components/posts/EditComment';
 
 import Test from './components/Test';
-import RootPage from './components/RootPage';
+
+import Welcome from './routes/Welcome';
 
 export default function App() {
 	function PrivateOutlet() {
@@ -36,7 +37,7 @@ export default function App() {
 	}
 
 	function useAuth() {
-		return true;
+		return false;
 	}
 
 	return (
@@ -44,7 +45,7 @@ export default function App() {
 			<BrowserRouter>
 				<Navlink />
 				<Routes>
-					<Route path="/" exact element={<RootPage />} />
+					<Route path="/" exact element={<Welcome />} />
 					<Route path="/login" exact element={<Login />} />
 					<Route path="/signup" element={<SignUp />} />
 					<Route path="/test" element={<Test />} />

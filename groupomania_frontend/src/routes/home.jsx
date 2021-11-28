@@ -1,15 +1,13 @@
-import axios from 'axios';
 import useToken from '../custom_hook/useToken';
 import Login from './Login';
 import Publications from './publications';
 
 const Home = () => {
 	const { token, setToken } = useToken();
-	axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
-	//if (!token) {
-	//	return <Login setToken={setToken} />;
-	//}
+	if (!token) {
+		return <Login />;
+	}
 
 	return (
 		<div>

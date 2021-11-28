@@ -33,7 +33,7 @@ import Welcome from './routes/Welcome';
 export default function App() {
 	function PrivateOutlet() {
 		const auth = useAuth();
-		return auth ? <Outlet /> : <Navigate to="/test" />;
+		return auth ? <Outlet /> : <Navigate to="/login" />;
 	}
 
 	function useAuth() {

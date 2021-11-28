@@ -1,54 +1,41 @@
 import React, { useState } from 'react';
-
+import PropTypes from 'prop-types';
+import useToken from '../custom_hook/useToken';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+async function loginUser(credentials) {
+	return fetch('http://localhost:8081/api/user/login', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(credentials),
+	}).then((data) => data.json());
+}
+
 export default function Login() {
+	const { token, setToken } = useToken();
+	axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
-	const [error, setError] = useState(null);
 
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const user = {
+		const token = await loginUser({
 			email,
 			password,
-		};
-
-		fetch('http://localhost:8081/api/user/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(user),
-		})
-			.then((res) => {
-				console.log(res);
-				if (!res.ok) {
-					throw Error(
-						'Non autorisé. Veuillez vérifier votre e-mail et mot de passe'
-					);
-				}
-
-				navigate('/private/home');
-			})
-
-			.catch((error) => {
-				console.error('Error:', error);
-				setError(error.message);
-			});
+		});
+		setToken(token);
+		navigate('/private/home');
 	};
 
 	return (
 		<div className="container mt-5">
 			<h2>Veuillez vous connecter</h2>
-
-			{error && (
-				<div className="alert alert-danger" role="alert">
-					{error}{' '}
-				</div>
-			)}
 			<form onSubmit={handleSubmit} className="row g-3">
 				<div className="form-group">
 					<label> Email</label>
@@ -80,3 +67,7 @@ export default function Login() {
 		</div>
 	);
 }
+
+Login.propTypes = {
+	setToken: PropTypes.func.isRequired,
+};

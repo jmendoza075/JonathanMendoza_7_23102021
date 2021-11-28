@@ -1,4 +1,5 @@
 import SignUp from './SignUp';
+
 import { Link } from 'react-router-dom';
 
 const Welcome = () => {

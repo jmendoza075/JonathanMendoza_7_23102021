@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import useToken from '../custom_hook/useToken';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-async function loginUser(credentials) {
-	return fetch('http://localhost:8081/api/user/login', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(credentials),
-	}).then((data) => data.json());
-}
 
 export default function Login() {
 	const { token, setToken } = useToken();
@@ -21,16 +10,36 @@ export default function Login() {
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 
+	const [error, setError] = useState(null);
+
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setError(null);
 		const token = await loginUser({
 			email,
 			password,
 		});
+
+		async function loginUser(credentials) {
+			return fetch('http://localhost:8081/api/user/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(credentials),
+			})
+				.then((data) => data.json())
+
+				.catch((error) => {
+					console.error('Error:', error);
+				});
+		}
+
 		setToken(token);
-		navigate('/private/home');
+		//console.log(token.error);
+		token.error ? setError(token.error) : navigate('/private/home');
 	};
 
 	return (
@@ -38,6 +47,12 @@ export default function Login() {
 			<h2>Veuillez vous connecter</h2>
 			<form onSubmit={handleSubmit} className="row g-3">
 				<div className="form-group">
+					{error && (
+						<div className="alert alert-danger" role="alert">
+							{error}{' '}
+						</div>
+					)}
+
 					<label> Email</label>
 
 					<input
@@ -67,7 +82,3 @@ export default function Login() {
 		</div>
 	);
 }
-
-Login.propTypes = {
-	setToken: PropTypes.func.isRequired,
-};

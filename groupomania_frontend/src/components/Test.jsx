@@ -21,10 +21,8 @@ const Test = () => {
 	};
 	return (
 		<div className="container mt-3">
-			<h1>
-				Helo you arrive here because you are not Logged in with good credentials
-			</h1>
-			<h2>PLEASE LOGIN or SIGNUP</h2>
+			<h1>Your AUTH is at FALSE</h1>
+			<h2>directed here bec not authorised</h2>
 			<hr />
 			<hr />
 

@@ -7,7 +7,7 @@ const PrivateOutlet = () => {
 		const userToken = JSON.parse(tokenString);
 		return userToken?.token;
 	};
-	const [token, setToken] = useState(getToken());
+	const [token] = useState(getToken());
 
 	return token ? <Outlet /> : <Navigate to="/test" />;
 };

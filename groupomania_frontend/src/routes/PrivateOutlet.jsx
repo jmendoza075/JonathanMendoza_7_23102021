@@ -1,10 +1,15 @@
-import {Navigate,Outlet} from 'react-router-dom';
-
-
+import { useState } from 'react';
+import { Outlet, Navigate } from 'react-router-dom';
 
 const PrivateOutlet = () => {
-	return(
-<h1>Hello Pivate Outlet here</h1>
-	)
+	const getToken = () => {
+		const tokenString = localStorage.getItem('token');
+		const userToken = JSON.parse(tokenString);
+		return userToken?.token;
+	};
+	const [token, setToken] = useState(getToken());
+
+	return token ? <Outlet /> : <Navigate to="/test" />;
+};
 
 export default PrivateOutlet;

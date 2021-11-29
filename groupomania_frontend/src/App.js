@@ -1,10 +1,4 @@
-import {
-	BrowserRouter,
-	Routes,
-	Route,
-	Outlet,
-	Navigate,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Navlink from './Navlink';
 import Home from './routes/home';
@@ -25,21 +19,11 @@ import NewPost from './components/posts/NewPost';
 import EditPost from './components/posts/EditPost';
 import NewComment from './components/posts/NewComment';
 import EditComment from './components/posts/EditComment';
-
+import PrivateOutlet from './routes/PrivateOutlet';
 import Test from './components/Test';
-
 import Welcome from './routes/Welcome';
 
 export default function App() {
-	function PrivateOutlet() {
-		const auth = useAuth();
-		return auth ? <Outlet /> : <Navigate to="/login" />;
-	}
-
-	function useAuth() {
-		return false;
-	}
-
 	return (
 		<div>
 			<BrowserRouter>

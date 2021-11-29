@@ -7,7 +7,7 @@ const Logout = () => {
 		localStorage.clear();
 
 		//window.location.reload();
-		navigate('/private/home');
+		navigate('/');
 	};
 
 	return (

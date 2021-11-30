@@ -41,22 +41,23 @@ export default function ListOneUser() {
 	};
 
 	return (
-		<div className="container ">
-			<h2>Single User # id {params_id}</h2>
+		<div className="container mt-3">
+			<h2>Profil de l'utilisateur # id {params_id}</h2>
 			<div>
 				{user.map((myUser) => (
 					<div key={myUser.id}>
-						<h2>
-							myUser id: {myUser.id} {myUser.user}{' '}
-						</h2>
-						<p>
-							{myUser.prenom} {myUser.nom}
-						</p>
-						<span>on {myUser.email}</span>
-						<span> about post id{myUser.password}</span>
+						<ul class="list-group">
+							<li class="list-group-item active">
+								{myUser.prenom} {myUser.nom}
+							</li>
+							<li class="list-group-item">User id: {myUser.id} </li>
+							<li class="list-group-item">Email {myUser.email}</li>
+							<li class="list-group-item">password:{myUser.password}</li>
+						</ul>
 					</div>
 				))}
 			</div>
+			<hr />
 			<button onClick={handleCancel} className="btn btn-outline-secondary ">
 				Cancel
 			</button>

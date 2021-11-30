@@ -20,8 +20,8 @@ export default function Users() {
 	}, []);
 
 	return (
-		<div className="container">
-			<h2>Users</h2>
+		<div className="container mt-3">
+			<h2>Utilisateurs</h2>
 			{users.map((user) => (
 				<ShowUsers
 					key={user.id}

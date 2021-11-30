@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../../database');
 const auth = require('../../middleware/auth');
 
-router.get('/', function (req, res) {
+router.get('/', auth, function (req, res) {
 	db.select()
 		.from('publication')
 		.orderBy('id')
@@ -11,14 +11,14 @@ router.get('/', function (req, res) {
 		.catch((error) => res.status(400).json({ error }));
 });
 
-router.post('/', function (req, res) {
+router.post('/', auth, function (req, res) {
 	db.insert(req.body)
 		.into('publication')
 		.then(() => res.status(201).json({ message: 'enregistrée !' }))
 		.catch((error) => res.status(400).json({ error }));
 });
 
-router.put('/:id', function (req, res) {
+router.put('/:id', auth, function (req, res) {
 	db('publication')
 		.where({ id: req.params.id })
 		.update(req.body)
@@ -26,7 +26,7 @@ router.put('/:id', function (req, res) {
 		.catch((error) => res.status(400).json({ error }));
 });
 
-router.delete('/:id', function (req, res) {
+router.delete('/:id', auth, function (req, res) {
 	db('publication')
 		.where({ id: req.params.id })
 		.del()
@@ -34,7 +34,7 @@ router.delete('/:id', function (req, res) {
 		.catch((error) => res.status(400).json({ error }));
 });
 
-router.get('/:id', function (req, res) {
+router.get('/:id', auth, function (req, res) {
 	db('publication')
 		.where({ id: req.params.id })
 		.select()

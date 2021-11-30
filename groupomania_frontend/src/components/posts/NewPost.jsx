@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import useToken from '../../custom_hook/useToken';
 const NewPost = () => {
+	const { token } = useToken();
+
 	const [titre, setTitre] = useState('');
 	const [text, setText] = useState('');
 	const [utilisateur_id, setUtilisateur_id] = useState('');
@@ -20,6 +22,7 @@ const NewPost = () => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(post),
 		})

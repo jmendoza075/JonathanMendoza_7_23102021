@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useToken from '../../custom_hook/useToken';
-const NewPost = () => {
-	const { token } = useToken();
 
+const NewPost = () => {
 	const [titre, setTitre] = useState('');
 	const [text, setText] = useState('');
-	const [utilisateur_id, setUtilisateur_id] = useState('');
 	const [date_cre, setDate_cre] = useState('');
-
 	const [isPending, setIsPending] = useState(false);
-
 	const navigate = useNavigate();
+
+	//extract the UserId and token from the Local Storage
+	const userToken = JSON.parse(localStorage.getItem('token'));
+	const utilisateur_id = userToken.userId;
+	const token = userToken.token;
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const post = { titre, text, utilisateur_id, date_cre };
@@ -43,6 +44,7 @@ const NewPost = () => {
 	return (
 		<div className="container mb-3 mt-3">
 			<h2>Add a New Post</h2>
+			<p>Posted by User ID: {utilisateur_id}</p>
 			<form onSubmit={handleSubmit} className="row g-3">
 				<label>Post titre:</label>
 				<input
@@ -51,12 +53,6 @@ const NewPost = () => {
 					value={titre}
 					onChange={(e) => setTitre(e.target.value)}
 				/>
-				<label>User ID#:</label>
-				<textarea
-					required
-					value={utilisateur_id}
-					onChange={(e) => setUtilisateur_id(e.target.value)}
-				></textarea>
 
 				<label>Text:</label>
 				<textarea

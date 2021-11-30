@@ -7,7 +7,7 @@ const EditUser = () => {
 	const params = useParams();
 	const params_id = params.id;
 
-	const [user, setUser] = useState([]);
+	const [userId, setUserId] = useState([]);
 
 	const [prenom, setPrenom] = useState('');
 	const [nom, setNom] = useState('');
@@ -24,7 +24,11 @@ const EditUser = () => {
 			.get(`${url}${params.id}`)
 			.then((response) => {
 				const getUser = response.data;
-				setUser(getUser);
+				setUserId(getUser[0].id);
+				setEmail(getUser[0].email);
+				setNom(getUser[0].nom);
+				setPrenom(getUser[0].prenom);
+				setPassword(getUser[0].password);
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	}, [params.id]);
@@ -43,88 +47,100 @@ const EditUser = () => {
 				console.log(`post ${params_id} modified`);
 			})
 			.catch((error) => console.error(`Error:${error}`));
+
+		alert('Utilisateur modifié ! Veuillez vous reconnecter');
+		//localStorage.clear();
+		navigate('/private/users');
 	};
 
 	return (
 		<div className="container mt-3">
-			<h3>Modify User </h3>
-
-			<div>
-				{user.map((myUser) => (
-					<div key={myUser.id}>
-						<h2>
-							User id: {myUser.id} {myUser.user}{' '}
-						</h2>
-						<p>
-							{myUser.prenom} {myUser.nom}
-						</p>
-						<span>on {myUser.email}</span>
-						<span> about post id{myUser.password}</span>
-					</div>
-				))}
-			</div>
+			<h3>Modify the User with Id: {userId} </h3>
 
 			<hr />
 
-			<div>
-				<label>
-					<p>nom</p>
-					<input
-						type="text"
-						value={nom}
-						onChange={(e) => {
-							setNom(e.target.value);
-						}}
-					/>{' '}
-				</label>
-				<br />
-				<br />
-				<label>
-					<p>prenom</p>
-				</label>
-				<input
-					type="text"
-					value={prenom}
-					onChange={(e) => {
-						setPrenom(e.target.value);
-					}}
-				/>{' '}
-				<br />
-				<br />
-				<label>
-					<p>Email</p>
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => {
-							setEmail(e.target.value);
-						}}
-					/>{' '}
-				</label>
-				<br />
-				<br />
-				<label>
-					<p>password</p>
-					<input
-						type="text"
-						value={password}
-						onChange={(e) => {
-							setPassword(e.target.value);
-						}}
-					/>{' '}
-				</label>
-				<br />
-				<br />
-			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col-9">
+					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text" id="basic-addon1">
+								Nom
+							</span>
+						</div>
+						<input
+							type="text"
+							className="form-control"
+							aria-describedby="basic-addon1"
+							value={nom}
+							onChange={(e) => {
+								setNom(e.target.value);
+							}}
+						/>
+					</div>
+					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text" id="basic-addon1">
+								Prenom
+							</span>
+						</div>
+						<input
+							type="text"
+							className="form-control"
+							aria-describedby="basic-addon1"
+							value={prenom}
+							onChange={(e) => {
+								setPrenom(e.target.value);
+							}}
+						/>
+					</div>
+					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text" id="basic-addon1">
+								Email
+							</span>
+						</div>
+						<input
+							type="text"
+							className="form-control"
+							aria-describedby="basic-addon1"
+							value={email}
+							onChange={(e) => {
+								setEmail(e.target.value);
+							}}
+						/>
+					</div>
+					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text" id="basic-addon1">
+								Password
+							</span>
+						</div>
+						<input
+							type="text"
+							className="form-control"
+							aria-describedby="basic-addon1"
+							value={password}
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
+						/>
+					</div>
+					<hr />
+					<div>
+						<button
+							onClick={handleCancel}
+							className="btn btn-outline-secondary "
+						>
+							Cancel
+						</button>
 
-			<div>
-				<button onClick={handleCancel} className="btn btn-outline-secondary ">
-					Cancel
-				</button>
-
-				<button onClick={updateUser} className="btn btn-primary btn-block">
-					Modify User
-				</button>
+						<button onClick={updateUser} className="btn btn-primary btn-block">
+							Modify User
+						</button>
+					</div>
+				</div>
+				<div class="col"></div>
 			</div>
 		</div>
 	);

@@ -22,6 +22,7 @@ const NewComment = () => {
 	//extract the UserId, Title and PostId from the Local Storage
 	const userToken = JSON.parse(localStorage.getItem('token'));
 	const utilisateur_id = userToken.userId;
+	const token = userToken.token;
 
 	const getPost = () => {
 		const Titre = localStorage.getItem('Titre');
@@ -38,6 +39,7 @@ const NewComment = () => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(postComment),
 		})

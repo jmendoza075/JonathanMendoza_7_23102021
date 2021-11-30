@@ -1,13 +1,13 @@
 import { Outlet, Link } from 'react-router-dom';
 
-import Navlogo from './components/NavLogo';
+import Navlogo from './NavLogo';
 import Logout from './routes/Logout';
 
 export default function Navlink() {
 	return (
 		<div>
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
-				<Link to="/" className="nav-link">
+				<Link to="/private/home" className="nav-link">
 					<Navlogo />
 				</Link>
 				<Logout />

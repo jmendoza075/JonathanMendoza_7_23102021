@@ -1,4 +1,4 @@
-import logo from '../assets/icon.svg';
+import logo from './assets/icon.svg';
 
 function Navlogo() {
 	return (

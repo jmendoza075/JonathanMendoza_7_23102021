@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useToken from '../custom_hook/useToken';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Login() {
 	const { token, setToken } = useToken();
@@ -77,6 +77,16 @@ export default function Login() {
 					<button type="submit" className="btn btn-primary btn-block">
 						Login
 					</button>
+
+					<hr />
+
+					<Link
+						to="/signup"
+						activeclassname="active"
+						style={{ textDecoration: 'none' }}
+					>
+						<small>ou cliquez ici pour vous inscrire</small>
+					</Link>
 				</div>
 			</form>
 		</div>

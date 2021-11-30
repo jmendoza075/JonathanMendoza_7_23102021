@@ -9,7 +9,7 @@ const PrivateOutlet = () => {
 	};
 	const [token] = useState(getToken());
 
-	return token ? <Outlet /> : <Navigate to="/test" />;
+	return token ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateOutlet;

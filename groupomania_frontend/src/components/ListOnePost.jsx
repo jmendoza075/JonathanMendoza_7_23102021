@@ -24,20 +24,8 @@ export default function OnePost() {
 	}, [params.id]);
 
 	//Buttons function
-	const handleCancel = () => {
+	const handleClick = () => {
 		navigate('/private/home');
-	};
-	const handleModify = () => {
-		navigate(`/private/publications/edit/${params.id}`);
-	};
-	const handleDelete = () => {
-		axios
-			.delete(`${url}${params.id}`)
-			.then((response) => {
-				console.log(`post ${params_id} deleted`);
-				navigate('/private/home');
-			})
-			.catch((error) => console.error(`Error:${error}`));
 	};
 
 	return (
@@ -54,15 +42,10 @@ export default function OnePost() {
 				))}
 			</div>
 
-			<button onClick={handleCancel} className="btn btn-outline-secondary ">
-				Cancel
+			<button onClick={handleClick} className="btn btn-outline-secondary ">
+				À l'accueille
 			</button>
-			<button onClick={handleModify} className="btn btn-secondary btn-block">
-				Modify
-			</button>
-			<button onClick={handleDelete} className="btn btn-primary btn-block">
-				Delete
-			</button>
+
 			<hr />
 			<hr />
 			<FilteredPostComment postId={params_id} />

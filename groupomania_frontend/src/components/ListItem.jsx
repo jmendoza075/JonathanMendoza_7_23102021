@@ -1,6 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
+	const [disabled, setDisabled] = useState(true);
+	//recover logged-in userid
+
+	useEffect(() => {
+		const userToken = JSON.parse(localStorage.getItem('token'));
+		const loggedUser = userToken.userId;
+
+		if (loggedUser === utilisateur) {
+			setDisabled(false);
+		}
+	}, [utilisateur]);
+
 	const navigate = useNavigate();
 
 	const handleComment = () => {
@@ -30,7 +43,11 @@ const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
 				<p>Comments:{comment}</p>
 				<p>posted on: {date}</p>
 			</Link>
-			<button onClick={handleModify} className="btn btn-secondary btn-block">
+			<button
+				onClick={handleModify}
+				className="btn btn-secondary btn-block "
+				disabled={disabled}
+			>
 				Modify Post
 			</button>
 

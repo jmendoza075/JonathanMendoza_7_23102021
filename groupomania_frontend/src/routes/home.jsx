@@ -16,11 +16,10 @@ const Home = () => {
 	console.log(`role:${role}`);
 
 	return (
-		<div>
+		<div className="container mt-3">
 			{role === 'admin' && <HomeAdmin />}
 			{role === 'moderator' && <HomeModerator />}
 
-			<h1>Hello Im home</h1>
 			<hr />
 			<Publications />
 			<hr />

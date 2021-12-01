@@ -46,7 +46,7 @@ export default function OnePost() {
 				{post.map((mapPost) => (
 					<div key={mapPost.id}>
 						<h2>{mapPost.titre} </h2>
-						<p>Posted by user ID: {mapPost.utilisateur_id}</p>
+						<p>Publié par l'utilisateur: {mapPost.utilisateur_id}</p>
 						<p>Post id #: {mapPost.id}</p>
 						<p>{mapPost.text}</p>
 						<p>on {mapPost.date_cre}</p>

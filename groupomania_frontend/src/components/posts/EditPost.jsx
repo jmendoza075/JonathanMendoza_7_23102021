@@ -6,41 +6,37 @@ import axios from 'axios';
 const EditPost = () => {
 	const params = useParams();
 	const params_id = params.id;
+	const [titre, setTitre] = useState('');
+	const [date_mod, setDate_mod] = useState('');
+	const [text, setText] = useState('');
 
 	const url = 'http://localhost:8081/api/publication/';
 
 	//Recover Single Post from API
-
-	const [postTitle, setPostTitle] = useState('');
-	const [postText, setPostText] = useState('');
 
 	useEffect(() => {
 		axios
 			.get(`${url}${params.id}`)
 			.then((response) => {
 				const getPost = response.data;
+				setTitre(getPost[0].titre);
+				setDate_mod(getPost[0].date_mod);
+				setText(getPost[0].text);
 
-				console.log(getPost[0].titre);
-				setPostTitle(getPost[0].titre);
-				setPostText(getPost[0].text);
+				console.log(getPost[0].date_mod);
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	}, [params.id]);
 
 	////Update the Post
 
-	const [titre, setTitre] = useState('');
-	const [date_mod, setDate_mod] = useState('');
-	const [text, setText] = useState('');
-
 	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const put = { titre, date_mod, text };
+	const modifyPost = () => {
+		const postMod = { titre, date_mod, text };
 
 		axios
-			.put(`${url}${params.id}`, put)
+			.put(`${url}${params.id}`, postMod)
 			.then((response) => {
 				console.log(`post ${params_id} modified`);
 				navigate('/private/home');
@@ -53,43 +49,75 @@ const EditPost = () => {
 	};
 
 	return (
-		<div className="container mb-3 mt-3">
-			<h2>Edit Post #{params_id} </h2>
-			<form onSubmit={handleSubmit} className="row g-3">
-				<label>Post titre:</label>
-				<input
-					type="text"
-					required
-					defaultValue={postTitle}
-					onChange={(e) => setTitre(e.target.value)}
-				/>
-				<label>Type your text here </label>
-				<textarea
-					type="text"
-					required
-					defaultValue={postText}
-					onChange={(e) => setText(e.target.value)}
-				/>
-
-				<label>Post Date Modified:</label>
-				<input
-					type="date"
-					required
-					value={date_mod}
-					onChange={(e) => setDate_mod(e.target.value)}
-				></input>
-				<div className="d-grid gap-2 d-md-block">
-					<button
-						className="btn btn-outline-secondary "
-						type="button"
-						onClick={handleCancel}
-					>
-						Cancel
-					</button>
-
-					<button className="btn btn-primary">Modify Post</button>
+		<div className="container mt-3">
+			<h2>Modifier la publication</h2>
+			<small> #{params_id} </small>
+			<hr />
+			<div className="row">
+				<div className="col"></div>
+				<div className="col-9">
+					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text" id="basic-addon1">
+								Titre
+							</span>
+						</div>
+						<input
+							type="text"
+							className="form-control"
+							aria-describedby="basic-addon1"
+							value={titre}
+							onChange={(e) => {
+								setTitre(e.target.value);
+							}}
+						/>
+					</div>
+					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text" id="basic-addon1">
+								Texte
+							</span>
+						</div>
+						<input
+							type="text"
+							className="form-control"
+							aria-describedby="basic-addon1"
+							value={text}
+							onChange={(e) => {
+								setText(e.target.value);
+							}}
+						/>
+					</div>
+					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text" id="basic-addon1">
+								Date Modifiée:
+							</span>
+						</div>
+						<input
+							type="date"
+							className="form-control"
+							aria-describedby="basic-addon1"
+							value={date_mod}
+							onChange={(e) => {
+								setDate_mod(e.target.value);
+							}}
+						/>
+					</div>
 				</div>
-			</form>
+				<div class="col"></div>
+			</div>
+			<hr />
+
+			<div className="d-grid gap-2 d-md-block">
+				<button onClick={handleCancel} className="btn btn-outline-secondary ">
+					Cancel
+				</button>
+
+				<button onClick={modifyPost} className="btn btn-primary btn-block">
+					Modifier
+				</button>
+			</div>
 		</div>
 	);
 };

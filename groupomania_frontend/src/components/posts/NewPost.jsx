@@ -11,6 +11,7 @@ const NewPost = () => {
 	//extract the UserId and token from the Local Storage
 	const userToken = JSON.parse(localStorage.getItem('token'));
 	const utilisateur_id = userToken.userId;
+	const prenom = userToken.prenom;
 	const token = userToken.token;
 
 	const handleSubmit = (e) => {
@@ -43,10 +44,11 @@ const NewPost = () => {
 
 	return (
 		<div className="container mb-3 mt-3">
-			<h2>Add a New Post</h2>
-			<p>Posted by User ID: {utilisateur_id}</p>
+			<h2>Créer une publication</h2>
+			<p>par {prenom}</p>
+			<small>User ID: {utilisateur_id}</small>
 			<form onSubmit={handleSubmit} className="row g-3">
-				<label>Post titre:</label>
+				<label>Titre:</label>
 				<input
 					type="text"
 					required
@@ -54,14 +56,14 @@ const NewPost = () => {
 					onChange={(e) => setTitre(e.target.value)}
 				/>
 
-				<label>Text:</label>
+				<label>Texte:</label>
 				<textarea
 					required
 					value={text}
 					onChange={(e) => setText(e.target.value)}
 				></textarea>
 
-				<label>Post Date:</label>
+				<label>Date:</label>
 				<input
 					type="date"
 					required
@@ -78,8 +80,8 @@ const NewPost = () => {
 						Cancel{' '}
 					</button>
 
-					{!isPending && <button className="btn btn-primary">Add Post</button>}
-					{isPending && <button disabled>Adding Post...</button>}
+					{!isPending && <button className="btn btn-primary">Publier</button>}
+					{isPending && <button disabled>Loading...</button>}
 				</div>
 			</form>
 		</div>

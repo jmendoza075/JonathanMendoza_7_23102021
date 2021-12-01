@@ -59,9 +59,9 @@ const EditUser = () => {
 
 			<hr />
 
-			<div class="row">
-				<div class="col"></div>
-				<div class="col-9">
+			<div className="row">
+				<div className="col"></div>
+				<div className="col-9">
 					<div className="input-group mb-3">
 						<div className="input-group-prepend">
 							<span className="input-group-text" id="basic-addon1">
@@ -136,7 +136,7 @@ const EditUser = () => {
 						</button>
 
 						<button onClick={updateUser} className="btn btn-primary btn-block">
-							Modify User
+							Modifier
 						</button>
 					</div>
 				</div>

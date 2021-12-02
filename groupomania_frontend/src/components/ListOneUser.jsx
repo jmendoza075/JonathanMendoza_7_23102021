@@ -46,13 +46,13 @@ export default function ListOneUser() {
 			<div>
 				{user.map((myUser) => (
 					<div key={myUser.id}>
-						<ul class="list-group">
-							<li class="list-group-item active">
+						<ul className="list-group">
+							<li className="list-group-item active">
 								{myUser.prenom} {myUser.nom}
 							</li>
-							<li class="list-group-item">User id: {myUser.id} </li>
-							<li class="list-group-item">Email {myUser.email}</li>
-							<li class="list-group-item">password:{myUser.password}</li>
+							<li className="list-group-item">User id: {myUser.id} </li>
+							<li className="list-group-item">Email {myUser.email}</li>
+							<li className="list-group-item">password:{myUser.password}</li>
 						</ul>
 					</div>
 				))}

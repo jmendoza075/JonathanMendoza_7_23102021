@@ -6,11 +6,9 @@ function Navlogo() {
 			<img
 				src={logo}
 				alt="Groupomania logo"
-				width="50"
-				height="50"
 				className="d-inline-block align-text-center"
+				height="50"
 			/>
-			Groupomania
 		</div>
 	);
 }

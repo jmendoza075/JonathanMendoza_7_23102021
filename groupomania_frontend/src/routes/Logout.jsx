@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const Logout = () => {
 	const navigate = useNavigate();
@@ -9,12 +10,12 @@ const Logout = () => {
 		//window.location.reload();
 		navigate('/');
 	};
-
+	<Button variant="outline-dark">Dark</Button>;
 	return (
-		<div className="container mt-3">
-			<button onClick={handleLogout} type="button" className="btn btn-warning">
-				logout
-			</button>
+		<div>
+			<Button variant="outline-dark" size="sm" onClick={handleLogout}>
+				Se déconnecter
+			</Button>
 		</div>
 	);
 };

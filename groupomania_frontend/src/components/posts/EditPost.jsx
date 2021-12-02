@@ -105,7 +105,7 @@ const EditPost = () => {
 						/>
 					</div>
 				</div>
-				<div class="col"></div>
+				<div className="col"></div>
 			</div>
 			<hr />
 

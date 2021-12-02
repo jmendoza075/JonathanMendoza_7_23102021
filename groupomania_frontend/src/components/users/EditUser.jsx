@@ -140,7 +140,7 @@ const EditUser = () => {
 						</button>
 					</div>
 				</div>
-				<div class="col"></div>
+				<div className="col"></div>
 			</div>
 		</div>
 	);

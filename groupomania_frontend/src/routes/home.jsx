@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Publications from './publications';
 
 import HomeAdmin from './HomeAdmin';
-import HomeModerator from './HomeModerator';
 
 const Home = () => {
 	const getRole = () => {
@@ -18,7 +17,6 @@ const Home = () => {
 	return (
 		<div className="container mt-3">
 			{role === 'admin' && <HomeAdmin />}
-			{role === 'moderator' && <HomeModerator />}
 
 			<hr />
 			<Publications />

@@ -2,20 +2,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
-	const [disabled, setDisabled] = useState(true);
-	//recover logged-in userid
+	//see if user'e role admin
+	const getRole = () => {
+		const tokenString = localStorage.getItem('token');
+		const userToken = JSON.parse(tokenString);
+		return userToken?.role;
+	};
+	const [role] = useState(getRole());
+
+	//recover logged-in userid and if role is moderator
 
 	useEffect(() => {
 		const userToken = JSON.parse(localStorage.getItem('token'));
 		const loggedUser = userToken.userId;
 
-		if (loggedUser === utilisateur) {
+		if (role === 'admin' || loggedUser === utilisateur) {
 			setDisabled(false);
 		}
-	}, [utilisateur]);
+	}, [utilisateur, role]);
 
 	const navigate = useNavigate();
 
+	//Button manangement
+	const [disabled, setDisabled] = useState(true);
 	const handleComment = () => {
 		localStorage.setItem('PostID', id);
 		localStorage.setItem('Titre', titre);
@@ -48,11 +57,11 @@ const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
 				className="btn btn-secondary btn-block "
 				disabled={disabled}
 			>
-				Modify Post
+				Modifier la publication
 			</button>
 
 			<button onClick={handleComment} className="btn btn-primary">
-				Click to comment
+				Commenter
 			</button>
 		</li>
 	);

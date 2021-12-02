@@ -7,7 +7,7 @@ import Users from './routes/users';
 import Publications from './routes/publications';
 import Comments from './routes/comments';
 
-import ListOnePost from './components/ListOnePost';
+import ListOnePost from './components/posts/ListOnePost';
 import ListOneComment from './components/ListOneComment';
 import ListOneUser from './components/ListOneUser';
 
@@ -22,6 +22,7 @@ import EditComment from './components/posts/EditComment';
 import PrivateOutlet from './routes/PrivateOutlet';
 import Test from './components/Test';
 import Welcome from './routes/Welcome';
+import UserProfile from './components/users/UserProfile';
 
 export default function App() {
 	return (
@@ -40,6 +41,7 @@ export default function App() {
 
 						<Route path="users/:id" element={<ListOneUser />} />
 						<Route path="users/edit/:id" element={<EditUser />} />
+						<Route path="users/profile" element={<UserProfile />} />
 
 						<Route path="publications" element={<Publications />} />
 						<Route path="publications/:id" element={<ListOnePost />} />

@@ -13,7 +13,7 @@ const Home = () => {
 	const [role] = useState(getRole());
 
 	return (
-		<div className="container mt-3">
+		<div className="container mb-3 mt-3">
 			{role === 'admin' && <HomeAdmin />}
 
 			<hr />

@@ -13,7 +13,7 @@ const Logout = () => {
 	<Button variant="outline-dark">Dark</Button>;
 	return (
 		<div>
-			<Button variant="outline-dark" size="sm" onClick={handleLogout}>
+			<Button variant="btn btn-outline-danger" size="sm" onClick={handleLogout}>
 				Se déconnecter
 			</Button>
 		</div>

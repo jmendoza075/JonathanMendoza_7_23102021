@@ -10,7 +10,7 @@ const Welcome = () => {
 			<h1>Bienvenu chez Groupomania</h1>
 			<h4>Please SIGN IN to register </h4>
 			<SignUp />
-			<hr />
+			<hr className="bg-danger border-2 border-top border-danger" />
 
 			<Link
 				to="/login"

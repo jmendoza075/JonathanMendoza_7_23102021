@@ -1,4 +1,4 @@
-import logo from './assets/icon.svg';
+import logo from './assets/cropped_logo.png';
 
 function Navlogo() {
 	return (
@@ -7,7 +7,7 @@ function Navlogo() {
 				src={logo}
 				alt="Groupomania logo"
 				className="d-inline-block align-text-center"
-				height="50"
+				width="200"
 			/>
 		</div>
 	);

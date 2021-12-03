@@ -3,13 +3,16 @@ import { Outlet } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
 import Logout from './routes/Logout';
+import NavLogo from './NavLogo';
 
 export default function Navlink() {
 	return (
 		<div>
-			<Navbar bg="dark" expand="lg" variant="dark">
+			<Navbar className="navbar navbar-dark bg-primary  " expand="lg">
 				<Container>
-					<Navbar.Brand href="/private/home">Groupomania</Navbar.Brand>
+					<Navbar.Brand href="/private/home">
+						<NavLogo />
+					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="justify-content-end">
@@ -28,6 +31,7 @@ export default function Navlink() {
 			</Navbar>
 
 			<Container className="mt-2">
+				<hr className="bg-danger border-2 border-top border-danger" />
 				<Logout />
 			</Container>
 

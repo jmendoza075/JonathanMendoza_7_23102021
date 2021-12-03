@@ -9,8 +9,18 @@ export default function ListOneComment() {
 
 	const url = 'http://localhost:8081/api/commentaire/';
 	const [comment, setComment] = useState([]);
+	const [userId, setUserId] = useState();
 
+	const [disabled, setDisabled] = useState(true);
 	const navigate = useNavigate();
+
+	//see if user's role admin
+	const getRole = () => {
+		const tokenString = localStorage.getItem('token');
+		const userToken = JSON.parse(tokenString);
+		return userToken?.role;
+	};
+	const [role] = useState(getRole());
 
 	useEffect(() => {
 		axios
@@ -18,10 +28,19 @@ export default function ListOneComment() {
 			.then((response) => {
 				const getComment = response.data;
 				setComment(getComment);
+				setUserId(getComment[0].utilisateur_id);
 			})
 			.catch((error) => console.error(`Error:${error}`));
-	}, [params.id]);
 
+		const userToken = JSON.parse(localStorage.getItem('token'));
+		const loggedUser = userToken.userId;
+
+		if (role === 'admin' || loggedUser === userId) {
+			setDisabled(false);
+		}
+	}, [params.id, userId, role]);
+
+	//Button manangement
 	const handleCancel = () => {
 		navigate('/private/home');
 	};
@@ -57,10 +76,18 @@ export default function ListOneComment() {
 			<button onClick={handleCancel} className="btn btn-outline-secondary ">
 				Cancel
 			</button>
-			<button onClick={handleModify} className="btn btn-primary btn-block">
+			<button
+				onClick={handleModify}
+				className="btn btn-primary btn-block"
+				disabled={disabled}
+			>
 				Modify
 			</button>
-			<button onClick={handleDelete} className="btn btn-primary btn-block">
+			<button
+				onClick={handleDelete}
+				className="btn btn-danger btn-block"
+				disabled={disabled}
+			>
 				Delete
 			</button>
 		</div>

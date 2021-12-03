@@ -29,23 +29,20 @@ export default function FilteredPostComment({ postId }) {
 				.filter((comment) => comment.publication_id == postId)
 				.map((filteredComment) => (
 					<div key={filteredComment.id}>
-						<p>{filteredComment.comment}</p>
-						<small>comment id: {filteredComment.id} </small>
-						<small> by user id: {filteredComment.utilisateur_id}</small>
-						<small> about post id {filteredComment.publication_id}</small>
-						<small> on {filteredComment.date_cre}</small>
-
-						<p></p>
-
 						<Link
 							to={`/private/comments/${filteredComment.id}`}
 							activeclassname="active"
 							style={{ textDecoration: 'none' }}
 						>
-							Delete or Edit comment
+							<h5>{filteredComment.comment}</h5>
+							<small>comment id: {filteredComment.id} </small>
+							<small> by user id: {filteredComment.utilisateur_id}</small>
+							<small> about post id {filteredComment.publication_id}</small>
+							<small> on {filteredComment.date_cre}</small>
+							<p></p>
+							<small> voir le commentaire</small>
+							<hr />
 						</Link>
-
-						<hr />
 					</div>
 				))}
 		</div>

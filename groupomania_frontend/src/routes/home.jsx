@@ -12,8 +12,6 @@ const Home = () => {
 
 	const [role] = useState(getRole());
 
-	console.log(`role:${role}`);
-
 	return (
 		<div className="container mt-3">
 			{role === 'admin' && <HomeAdmin />}

@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
-	//see if user'e role admin
+	//see if user's role admin
 	const getRole = () => {
 		const tokenString = localStorage.getItem('token');
 		const userToken = JSON.parse(tokenString);

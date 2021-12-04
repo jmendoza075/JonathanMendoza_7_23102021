@@ -27,7 +27,9 @@ export default function ListOneUser() {
 			.delete(`${url}${params.id}`)
 			.then((response) => {
 				console.log(`user ${params_id} deleted`);
-				navigate('/private/users');
+				alert('Utilisateur supprimé !');
+				localStorage.clear();
+				navigate('/');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};
@@ -37,12 +39,14 @@ export default function ListOneUser() {
 	};
 
 	const handleCancel = () => {
-		navigate('/private/users');
+		navigate('/private/home');
 	};
 
 	return (
 		<div className="container mt-3">
-			<h2>Profil de l'utilisateur # id {params_id}</h2>
+			<h2>Profil de l'utilisateur </h2>
+			<hr />
+			<small># id {params_id}</small>
 			<div>
 				{user.map((myUser) => (
 					<div key={myUser.id}>
@@ -50,9 +54,7 @@ export default function ListOneUser() {
 							<li className="list-group-item active">
 								{myUser.prenom} {myUser.nom}
 							</li>
-							<li className="list-group-item">User id: {myUser.id} </li>
-							<li className="list-group-item">Email {myUser.email}</li>
-							<li className="list-group-item">password:{myUser.password}</li>
+							<li className="list-group-item">{myUser.email}</li>
 						</ul>
 					</div>
 				))}
@@ -64,7 +66,10 @@ export default function ListOneUser() {
 			<button onClick={handleModify} className="btn btn-outline-secondary ">
 				Modify
 			</button>
-			<button onClick={handleDelete} className="btn btn-primary btn-block">
+			<button
+				onClick={handleDelete}
+				className="btn btn-outline-danger btn-block"
+			>
 				Delete
 			</button>
 		</div>

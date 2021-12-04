@@ -66,18 +66,27 @@ exports.getAllUsers = (req, res) => {
 		.then((data) => res.status(200).json(data))
 		.catch((error) => res.status(400).json({ error }));
 };
-
+/*
 exports.createUser = (req, res) => {
 	db.insert(req.body)
 		.into('utilisateur')
 		.then(() => res.status(201).json({ message: 'enregistrée !' }))
 		.catch((error) => res.status(400).json({ error }));
 };
+*/
+exports.modifyUser = async (req, res) => {
+	const salt = await bcrypt.genSalt(10);
+	const hashedPassword = await bcrypt.hash(req.body.password, salt);
+	const user = {
+		email: req.body.email,
+		password: hashedPassword,
+		nom: req.body.nom,
+		prenom: req.body.prenom,
+	};
 
-exports.modifyUser = (req, res) => {
 	db('utilisateur')
 		.where({ id: req.params.id })
-		.update(req.body)
+		.update(user)
 		.then(() => res.status(200).json({ message: 'modifiée !' }))
 		.catch((error) => res.status(400).json({ error }));
 };

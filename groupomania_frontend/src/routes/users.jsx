@@ -12,7 +12,6 @@ export default function Users() {
 			.then((response) => {
 				const allUsers = response.data;
 				getUsers(allUsers);
-				console.log(allUsers);
 			})
 			.catch((error) => {
 				console.error(`Error:${error}`);

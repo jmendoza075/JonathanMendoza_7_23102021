@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../database');
 const auth = require('../../middleware/auth');
+const multer = require('../../middleware/multer-config');
+const postCtrl = require('../../controllers/postControl');
 
 router.get('/', auth, function (req, res) {
 	db.select()
@@ -10,7 +12,9 @@ router.get('/', auth, function (req, res) {
 		.then((data) => res.status(200).json(data))
 		.catch((error) => res.status(400).json({ error }));
 });
-
+/*
+router.post('/', auth, multer, postCtrl.createPost);
+*/
 router.post('/', auth, function (req, res) {
 	db.insert(req.body)
 		.into('publication')

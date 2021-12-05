@@ -1,24 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const NewPost = () => {
-	const [titre, setTitre] = useState('');
-	const [text, setText] = useState('');
-	const [date_cre, setDate_cre] = useState('');
-	const [isPending, setIsPending] = useState(false);
 	const navigate = useNavigate();
 
 	//extract the UserId and token from the Local Storage
 	const userToken = JSON.parse(localStorage.getItem('token'));
 	const utilisateur_id = userToken.userId;
 	const prenom = userToken.prenom;
-	const token = userToken.token;
 
+	/*	const token = userToken.token;
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const post = { titre, text, utilisateur_id, date_cre };
-
-		setIsPending(true);
 
 		fetch('http://localhost:8081/api/publication', {
 			method: 'POST',
@@ -29,7 +24,7 @@ const NewPost = () => {
 			body: JSON.stringify(post),
 		})
 			.then(() => {
-				setIsPending(false);
+
 				navigate('/private/home');
 			})
 			.catch((error) => {
@@ -38,8 +33,34 @@ const NewPost = () => {
 			});
 	};
 
+*/
 	const handleCancel = () => {
 		navigate('/private/home');
+	};
+
+	const [titre, setTitre] = useState('');
+	const [text, setText] = useState('');
+	const [date_cre, setDate_cre] = useState('');
+	const post = { titre, text, utilisateur_id, date_cre };
+
+	const [file, setFile] = useState();
+
+	const saveFile = (e) => {
+		setFile(e.target.files[0]);
+	};
+	console.log(file);
+
+	const formData = new FormData();
+	formData.append('file', file);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		axios
+			.post('http://localhost:8081/api/publication', post)
+			.then((res) => {
+				alert('file OK');
+			})
+			.catch((err) => alert('file nok'));
 	};
 
 	return (
@@ -71,6 +92,8 @@ const NewPost = () => {
 					onChange={(e) => setDate_cre(e.target.value)}
 				></input>
 
+				<input type="file" name="image" onChange={saveFile} />
+
 				<div className="d-grid gap-2 d-md-block">
 					<button
 						className="btn btn-outline-secondary "
@@ -80,8 +103,7 @@ const NewPost = () => {
 						Cancel{' '}
 					</button>
 
-					{!isPending && <button className="btn btn-primary">Publier</button>}
-					{isPending && <button disabled>Loading...</button>}
+					<button className="btn btn-primary">Publier</button>
 				</div>
 			</form>
 		</div>

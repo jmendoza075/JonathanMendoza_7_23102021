@@ -94,7 +94,7 @@ const SignUp = () => {
 				</div>
 
 				<div>
-					<button className="btn btn-primary btn-block">Sign Up</button>
+					<button className="btn btn-primary btn-block">Enregistrer</button>
 				</div>
 			</form>
 		</div>

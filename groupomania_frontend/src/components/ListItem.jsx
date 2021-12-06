@@ -5,6 +5,7 @@ import axios from 'axios';
 const ListItem = ({
 	titre,
 	text,
+	prenom,
 	utilisateur,
 	id,
 	imageUrl,
@@ -56,7 +57,7 @@ const ListItem = ({
 	};
 
 	return (
-		<li className="list-group-item list-group-item-primary mt-3 btn p-2">
+		<li className="list-group-item  mt-3 btn p-2">
 			<Link
 				to={`/private/publications/${id}`}
 				activeclassname="active"
@@ -64,13 +65,15 @@ const ListItem = ({
 			>
 				<h2>{titre}</h2>
 				<h6> {text}</h6>
-				<small>POST # {id} </small>
-				<small>par user {utilisateur}</small>
+
+				<small>par {prenom}</small>
 				<div>
-					<img src={imageUrl} alt="post_photo" width="300" />
+					<img src={imageUrl} alt="post_photo" width="400" />
 				</div>
 				<div>
-					<small>le: {date}</small>
+					<small>
+						post #{id}, le: {date}{' '}
+					</small>
 				</div>
 			</Link>
 			<hr />
@@ -90,7 +93,10 @@ const ListItem = ({
 				Supprimer
 			</button>
 
-			<button onClick={handleComment} className="btn btn-primary btn-sm">
+			<button
+				onClick={handleComment}
+				className="btn btn-outline-primary btn-sm"
+			>
 				Commenter
 			</button>
 		</li>

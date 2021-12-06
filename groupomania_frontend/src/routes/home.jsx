@@ -31,10 +31,18 @@ const Home = () => {
 				<h1>Bonjour {prenom} </h1>
 				<Button
 					href={`/private/users/${userId}`}
-					variant="outline-secondary"
+					variant="btn btn-secondary"
 					size="sm"
 				>
 					Gerer mon profil
+				</Button>
+
+				<Button
+					href={`/private/publications/add`}
+					variant="btn btn-secondary"
+					size="sm"
+				>
+					Publier
 				</Button>
 			</div>
 

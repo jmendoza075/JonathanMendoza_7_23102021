@@ -10,34 +10,6 @@ const NewPost = () => {
 	const utilisateur_id = userToken.userId;
 	const prenom = userToken.prenom;
 
-	/*	const token = userToken.token;
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const post = { titre, text, utilisateur_id, date_cre };
-
-		fetch('http://localhost:8081/api/publication', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${token}`,
-			},
-			body: JSON.stringify(post),
-		})
-			.then(() => {
-
-				navigate('/private/home');
-			})
-			.catch((error) => {
-				console.error('Error:', error);
-				alert('Back End NOT ready');
-			});
-	};
-
-*/
-	const handleCancel = () => {
-		navigate('/private/home');
-	};
-
 	const [titre, setTitre] = useState('');
 	const [text, setText] = useState('');
 	const [date_cre, setDate_cre] = useState('');
@@ -48,7 +20,6 @@ const NewPost = () => {
 	const saveFile = (e) => {
 		setFile(e.target.files[0]);
 	};
-	console.log(file);
 
 	const formData = new FormData();
 	formData.append('file', file);
@@ -56,13 +27,22 @@ const NewPost = () => {
 	formData.append('text', text);
 	formData.append('date_cre', date_cre);
 	formData.append('utilisateur_id', utilisateur_id);
+	formData.append('prenom', prenom);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
 			.post('http://localhost:8081/api/publication', formData)
 			.then((response) => console.log(response))
+			.then(() => {
+				navigate('/private/home');
+			})
+
 			.catch((error) => console.log(error));
+	};
+
+	const handleCancel = () => {
+		navigate('/private/home');
 	};
 
 	return (
@@ -74,6 +54,7 @@ const NewPost = () => {
 				<label>Titre:</label>
 				<input
 					type="text"
+					required
 					value={titre}
 					onChange={(e) => setTitre(e.target.value)}
 				/>
@@ -81,17 +62,19 @@ const NewPost = () => {
 				<label>Texte:</label>
 				<textarea
 					value={text}
+					required
 					onChange={(e) => setText(e.target.value)}
 				></textarea>
 
 				<label>Date:</label>
 				<input
 					type="date"
+					required
 					value={date_cre}
 					onChange={(e) => setDate_cre(e.target.value)}
 				></input>
 
-				<input type="file" name="file" onChange={saveFile} />
+				<input type="file" required name="file" onChange={saveFile} />
 
 				<div className="d-grid gap-2 d-md-block">
 					<button

@@ -43,6 +43,7 @@ class ItemsBody extends Component {
 					titre={publication.titre}
 					text={publication.text}
 					utilisateur={publication.utilisateur_id}
+					prenom={publication.prenom}
 					imageUrl={publication.imageUrl}
 					comment={publication.comment}
 					date={publication.date_cre}

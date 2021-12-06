@@ -6,9 +6,9 @@ const Welcome = () => {
 	localStorage.clear();
 
 	return (
-		<div className="container mt-3">
+		<div className="container mt-3 background-image">
 			<h1>Bienvenu chez Groupomania</h1>
-			<h4>Please SIGN IN to register </h4>
+
 			<SignUp />
 			<hr className="bg-danger border-2 border-top border-danger" />
 

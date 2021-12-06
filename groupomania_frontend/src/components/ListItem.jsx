@@ -1,7 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
+const ListItem = ({
+	titre,
+	text,
+	utilisateur,
+	id,
+	imageUrl,
+	comment,
+	date,
+}) => {
 	//see if user's role admin
 	const getRole = () => {
 		const tokenString = localStorage.getItem('token');
@@ -32,6 +41,16 @@ const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
 		navigate(`/private/comments/comment/${id}`);
 	};
 
+	const handleDelete = () => {
+		axios
+			.delete(`http://localhost:8081/api/publication/${id}`)
+			.then((response) => {
+				alert(`comment ${id} deleted`);
+				window.location.reload();
+				navigate('/private/home');
+			})
+			.catch((error) => console.error(`Error:${error}`));
+	};
 	const handleModify = () => {
 		navigate(`/private/publications/edit/${id}`);
 	};
@@ -44,23 +63,34 @@ const ListItem = ({ titre, text, utilisateur, id, type, comment, date }) => {
 				style={{ textDecoration: 'none' }}
 			>
 				<h2>{titre}</h2>
-				<p>POST # {id} </p>
-				<p>done by user {utilisateur}</p>
-
-				<p>Text: {text}</p>
-				<p>Post type: {type}</p>
-				<p>Comments:{comment}</p>
-				<p>posted on: {date}</p>
+				<h6> {text}</h6>
+				<small>POST # {id} </small>
+				<small>par user {utilisateur}</small>
+				<div>
+					<img src={imageUrl} alt="post_photo" width="300" />
+				</div>
+				<div>
+					<small>le: {date}</small>
+				</div>
 			</Link>
+			<hr />
 			<button
 				onClick={handleModify}
-				className="btn btn-secondary btn-block "
+				className="btn btn-outline-secondary btn-sm "
 				disabled={disabled}
 			>
 				Modifier la publication
 			</button>
 
-			<button onClick={handleComment} className="btn btn-primary">
+			<button
+				onClick={handleDelete}
+				className="btn btn-outline-danger btn-sm "
+				disabled={disabled}
+			>
+				Supprimer
+			</button>
+
+			<button onClick={handleComment} className="btn btn-primary btn-sm">
 				Commenter
 			</button>
 		</li>

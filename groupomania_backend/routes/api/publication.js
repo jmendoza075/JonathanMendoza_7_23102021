@@ -12,16 +12,19 @@ router.get('/', auth, function (req, res) {
 		.then((data) => res.status(200).json(data))
 		.catch((error) => res.status(400).json({ error }));
 });
-/*
+
 router.post('/', auth, multer, postCtrl.createPost);
-*/
-router.post('/', auth, function (req, res) {
+
+/*
+router.post('/', auth, multer, function (req, res) {
+	//console.log(req.file);
+	console.log(req.body);
 	db.insert(req.body)
 		.into('publication')
 		.then(() => res.status(201).json({ message: 'enregistrée !' }))
 		.catch((error) => res.status(400).json({ error }));
 });
-
+*/
 router.put('/:id', auth, function (req, res) {
 	db('publication')
 		.where({ id: req.params.id })

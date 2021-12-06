@@ -1,8 +1,10 @@
 // PACKAGE IMPORTATION //
 const express = require('express');
-const apiRoute = require('./routes/api');
-const bodyParser = require('body-parser');
 const app = express();
+const path = require('path');
+const bodyParser = require('body-parser');
+
+const apiRoute = require('./routes/api');
 
 //CORS error treatment//
 app.use((req, res, next) => {
@@ -23,6 +25,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //ROUTES
+
+app.use(
+	'/middleware/media',
+	express.static(path.join(__dirname, '/middleware/media'))
+);
 app.use('/api', apiRoute);
 
 module.exports = app;

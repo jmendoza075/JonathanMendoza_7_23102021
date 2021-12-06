@@ -81,14 +81,14 @@ export default function ListOneComment() {
 				className="btn btn-primary btn-block"
 				disabled={disabled}
 			>
-				Modify
+				Modifier
 			</button>
 			<button
 				onClick={handleDelete}
 				className="btn btn-danger btn-block"
 				disabled={disabled}
 			>
-				Delete
+				Supprimer
 			</button>
 		</div>
 	);

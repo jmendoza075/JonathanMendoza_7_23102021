@@ -41,7 +41,7 @@ const NewPost = () => {
 	const [titre, setTitre] = useState('');
 	const [text, setText] = useState('');
 	const [date_cre, setDate_cre] = useState('');
-	const post = { titre, text, utilisateur_id, date_cre };
+	//const post = { titre, text, utilisateur_id, date_cre };
 
 	const [file, setFile] = useState();
 
@@ -52,15 +52,17 @@ const NewPost = () => {
 
 	const formData = new FormData();
 	formData.append('file', file);
+	formData.append('titre', titre);
+	formData.append('text', text);
+	formData.append('date_cre', date_cre);
+	formData.append('utilisateur_id', utilisateur_id);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post('http://localhost:8081/api/publication', post)
-			.then((res) => {
-				alert('file OK');
-			})
-			.catch((err) => alert('file nok'));
+			.post('http://localhost:8081/api/publication', formData)
+			.then((response) => console.log(response))
+			.catch((error) => console.log(error));
 	};
 
 	return (
@@ -72,14 +74,12 @@ const NewPost = () => {
 				<label>Titre:</label>
 				<input
 					type="text"
-					required
 					value={titre}
 					onChange={(e) => setTitre(e.target.value)}
 				/>
 
 				<label>Texte:</label>
 				<textarea
-					required
 					value={text}
 					onChange={(e) => setText(e.target.value)}
 				></textarea>
@@ -87,12 +87,11 @@ const NewPost = () => {
 				<label>Date:</label>
 				<input
 					type="date"
-					required
 					value={date_cre}
 					onChange={(e) => setDate_cre(e.target.value)}
 				></input>
 
-				<input type="file" name="image" onChange={saveFile} />
+				<input type="file" name="file" onChange={saveFile} />
 
 				<div className="d-grid gap-2 d-md-block">
 					<button

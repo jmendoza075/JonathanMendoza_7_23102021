@@ -23,8 +23,10 @@ exports.createPost = (req, res) => {
 
 exports.modifyPost = (req, res) => {
 	console.log(req.file);
+	const postObject = req.body;
 	const modObject = req.file
 		? {
+				...postObject,
 				imageUrl: `${req.protocol}://${req.get('host')}/middleware/media/${
 					req.file.filename
 				}`,

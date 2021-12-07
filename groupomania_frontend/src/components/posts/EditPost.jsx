@@ -30,11 +30,27 @@ const EditPost = () => {
 
 	const navigate = useNavigate();
 
-	const modifyPost = () => {
-		const postMod = { titre, date_mod, text };
+	//// send File and Data
 
+	const [file, setFile] = useState(false);
+	const saveFile = (e) => {
+		setFile(e.target.files[0]);
+	};
+
+	/// Determine the contents of the Payload: with or without Photo (file)
+	const onlyData = { titre, date_mod, text };
+
+	const fileNData = new FormData();
+	fileNData.append('file', file);
+	fileNData.append('titre', titre);
+	fileNData.append('text', text);
+	fileNData.append('date_cre', date_mod);
+
+	const payLoad = !file ? onlyData : fileNData;
+
+	const modifyPost = () => {
 		axios
-			.put(`${url}${params.id}`, postMod)
+			.put(`${url}${params.id}`, payLoad)
 			.then((response) => {
 				console.log(`post ${params_id} modified`);
 				navigate('/private/home');
@@ -99,6 +115,21 @@ const EditPost = () => {
 							}}
 						/>
 					</div>
+
+					<small>Ajouter une image</small>
+					<div className="input-group mb-3">
+						<label id="basic-addon4"></label>
+						<input
+							className="form-control"
+							aria-describedby="basic-addon4"
+							placeholder="Image"
+							type="file"
+							required
+							name="file"
+							onChange={saveFile}
+						></input>
+					</div>
+
 					<div className="d-grid gap-2 d-md-block">
 						<button onClick={handleCancel} className="btn btn-secondary ">
 							Cancel

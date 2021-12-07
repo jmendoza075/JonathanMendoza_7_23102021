@@ -15,7 +15,7 @@ const NewPost = () => {
 	const [date_cre, setDate_cre] = useState('');
 	//const post = { titre, text, utilisateur_id, date_cre };
 
-	const [file, setFile] = useState();
+	const [file, setFile] = useState('');
 
 	const saveFile = (e) => {
 		setFile(e.target.files[0]);

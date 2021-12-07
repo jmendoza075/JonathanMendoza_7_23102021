@@ -35,11 +35,10 @@ const Home = () => {
 					size="sm"
 				>
 					Gerer mon profil
-				</Button>
-
+				</Button>{' '}
 				<Button
 					href={`/private/publications/add`}
-					variant="btn btn-secondary"
+					variant="btn btn-primary"
 					size="sm"
 				>
 					Publier

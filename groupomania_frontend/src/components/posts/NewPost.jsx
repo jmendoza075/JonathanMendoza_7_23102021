@@ -46,46 +46,85 @@ const NewPost = () => {
 	};
 
 	return (
-		<div className="container mb-3 mt-3">
-			<h2>Créer une publication</h2>
-			<p>par {prenom}</p>
-			<small>User ID: {utilisateur_id}</small>
-			<form onSubmit={handleSubmit} className="row g-3">
-				<label>Titre:</label>
-				<input
-					type="text"
-					required
-					value={titre}
-					onChange={(e) => setTitre(e.target.value)}
-				/>
+		<div className="container mt-3">
+			<h3>Créer une publication</h3>
+			<hr />
+			<p>
+				par {prenom},<small> user ID: {utilisateur_id}</small>
+			</p>
 
-				<label>Texte:</label>
-				<textarea
-					value={text}
-					required
-					onChange={(e) => setText(e.target.value)}
-				></textarea>
+			<form onSubmit={handleSubmit}>
+				<div className="row">
+					<div className="col" id="column_left"></div>
+					<div className="col-9" id="column_center">
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon1">
+								Titre:
+							</label>
+							<input
+								type="text"
+								className="form-control"
+								aria-describedby="basic-addon1"
+								placeholder="Titre"
+								required
+								value={titre}
+								onChange={(e) => setTitre(e.target.value)}
+							/>
+						</div>
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon2">
+								Texte:
+							</label>
+							<textarea
+								className="form-control"
+								aria-describedby="basic-addon2"
+								placeholder="Texte"
+								value={text}
+								required
+								onChange={(e) => setText(e.target.value)}
+							></textarea>
+						</div>
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon3">
+								Date:
+							</label>
+							<input
+								className="form-control"
+								aria-describedby="basic-addon2"
+								placeholder="Date"
+								type="date"
+								required
+								value={date_cre}
+								onChange={(e) => setDate_cre(e.target.value)}
+							></input>
+						</div>
+						<small>Ajouter une image</small>
+						<div className="input-group mb-3">
+							<label id="basic-addon4"></label>
+							<input
+								className="form-control"
+								aria-describedby="basic-addon4"
+								placeholder="Image"
+								type="file"
+								required
+								name="file"
+								onChange={saveFile}
+							></input>
+						</div>
 
-				<label>Date:</label>
-				<input
-					type="date"
-					required
-					value={date_cre}
-					onChange={(e) => setDate_cre(e.target.value)}
-				></input>
+						<div className="d-grid gap-2 d-md-block">
+							<button
+								className="btn btn-secondary "
+								type="button"
+								onClick={handleCancel}
+							>
+								Cancel{' '}
+							</button>
 
-				<input type="file" required name="file" onChange={saveFile} />
-
-				<div className="d-grid gap-2 d-md-block">
-					<button
-						className="btn btn-outline-secondary "
-						type="button"
-						onClick={handleCancel}
-					>
-						Cancel{' '}
-					</button>
-
-					<button className="btn btn-primary">Publier</button>
+							<button className="btn btn-primary">Publier</button>
+						</div>
+					</div>
+					<div className="col" id="column_right"></div>
 				</div>
 			</form>
 		</div>

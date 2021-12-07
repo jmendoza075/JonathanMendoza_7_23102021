@@ -22,8 +22,6 @@ const EditPost = () => {
 				setTitre(getPost[0].titre);
 				setDate_mod(getPost[0].date_mod);
 				setText(getPost[0].text);
-
-				console.log(getPost[0].date_mod);
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	}, [params.id]);
@@ -54,18 +52,17 @@ const EditPost = () => {
 			<small> #{params_id} </small>
 			<hr />
 			<div className="row">
-				<div className="col"></div>
-				<div className="col-9">
+				<div className="col" id="col-left"></div>
+				<div className="col-md-9">
 					<div className="input-group mb-3">
-						<div className="input-group-prepend">
-							<span className="input-group-text" id="basic-addon1">
-								Titre
-							</span>
-						</div>
+						<label className="input-group-text" id="basic-addon1">
+							Titre
+						</label>
 						<input
-							type="text"
 							className="form-control"
 							aria-describedby="basic-addon1"
+							placeholder="Titre"
+							type="text"
 							value={titre}
 							onChange={(e) => {
 								setTitre(e.target.value);
@@ -73,15 +70,14 @@ const EditPost = () => {
 						/>
 					</div>
 					<div className="input-group mb-3">
-						<div className="input-group-prepend">
-							<span className="input-group-text" id="basic-addon1">
-								Texte
-							</span>
-						</div>
-						<input
-							type="text"
+						<label className="input-group-text" id="basic-addon2">
+							Texte
+						</label>
+						<textarea
 							className="form-control"
-							aria-describedby="basic-addon1"
+							aria-describedby="basic-addon2"
+							placeholder="Texte"
+							type="text"
 							value={text}
 							onChange={(e) => {
 								setText(e.target.value);
@@ -89,35 +85,33 @@ const EditPost = () => {
 						/>
 					</div>
 					<div className="input-group mb-3">
-						<div className="input-group-prepend">
-							<span className="input-group-text" id="basic-addon1">
-								Date Modifiée:
-							</span>
-						</div>
+						<label className="input-group-text" id="basic-addon3">
+							Date:
+						</label>
 						<input
-							type="date"
 							className="form-control"
-							aria-describedby="basic-addon1"
+							aria-describedby="basic-addon3"
+							placeholder="Date"
+							type="date"
 							value={date_mod}
 							onChange={(e) => {
 								setDate_mod(e.target.value);
 							}}
 						/>
 					</div>
+					<div className="d-grid gap-2 d-md-block">
+						<button onClick={handleCancel} className="btn btn-secondary ">
+							Cancel
+						</button>
+
+						<button onClick={modifyPost} className="btn btn-primary btn-block">
+							Modifier
+						</button>
+					</div>
 				</div>
-				<div className="col"></div>
+				<div className="col" id="col-right"></div>
 			</div>
 			<hr />
-
-			<div className="d-grid gap-2 d-md-block">
-				<button onClick={handleCancel} className="btn btn-outline-secondary ">
-					Cancel
-				</button>
-
-				<button onClick={modifyPost} className="btn btn-primary btn-block">
-					Modifier
-				</button>
-			</div>
 		</div>
 	);
 };

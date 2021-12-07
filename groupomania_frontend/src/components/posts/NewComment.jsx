@@ -23,6 +23,7 @@ const NewComment = () => {
 	const userToken = JSON.parse(localStorage.getItem('token'));
 	const utilisateur_id = userToken.userId;
 	const token = userToken.token;
+	const prenom = userToken.prenom;
 
 	const getPost = () => {
 		const Titre = localStorage.getItem('Titre');
@@ -57,37 +58,60 @@ const NewComment = () => {
 	};
 
 	return (
-		<div className="container mb-3 mt-3">
+		<div className="container mt-3">
 			<h2>
-				Commenting on post # {params_id}: {title}{' '}
+				Commentaire sur post # {params_id}: {title}
 			</h2>
-			<p>Commented by User ID: {utilisateur_id}</p>
-			<form onSubmit={handleSubmit} className="row g-3">
-				<label>Type your comment here </label>
-				<textarea
-					required
-					value={comment}
-					onChange={(e) => setComment(e.target.value)}
-				/>
+			<hr />
+			<p>
+				Commenté par {prenom}, <small>User ID: {utilisateur_id}</small>
+			</p>
+			<form onSubmit={handleSubmit}>
+				<div className="row">
+					<div className="col" id="column_left"></div>
+					<div className="col-9" id="column_center">
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon1">
+								Commenter:
+							</label>
+							<textarea
+								className="form-control"
+								aria-describedby="basic-addon1"
+								placeholder="Texte"
+								required
+								value={comment}
+								onChange={(e) => setComment(e.target.value)}
+							/>
+						</div>
 
-				<label>Post Date:</label>
-				<input
-					type="date"
-					required
-					value={date_cre}
-					onChange={(e) => setDate_cre(e.target.value)}
-				></input>
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon2">
+								Date:
+							</label>
+							<input
+								className="form-control"
+								aria-describedby="basic-addon2"
+								placeholder="Date"
+								type="date"
+								required
+								value={date_cre}
+								onChange={(e) => setDate_cre(e.target.value)}
+							></input>
+						</div>
 
-				<div className="d-grid gap-2 d-md-block">
-					<button
-						className="btn btn-outline-secondary "
-						type="button"
-						onClick={handleCancel}
-					>
-						Cancel{' '}
-					</button>
+						<div className="d-grid gap-2 d-md-block">
+							<button
+								className="btn btn-secondary "
+								type="button"
+								onClick={handleCancel}
+							>
+								Cancel{' '}
+							</button>
 
-					<button className="btn btn-primary">Add Comment</button>
+							<button className="btn btn-primary">Add Comment</button>
+						</div>
+					</div>
+					<div className="col" id="column_right"></div>
 				</div>
 			</form>
 		</div>

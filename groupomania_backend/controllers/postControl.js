@@ -20,3 +20,20 @@ exports.createPost = (req, res) => {
 		.then(() => res.status(201).json({ message: 'enregistrée !' }))
 		.catch((error) => res.status(400).json({ error }));
 };
+
+exports.modifyPost = (req, res) => {
+	console.log(req.file);
+	const modObject = req.file
+		? {
+				imageUrl: `${req.protocol}://${req.get('host')}/middleware/media/${
+					req.file.filename
+				}`,
+		  }
+		: { ...req.body };
+
+	db('publication')
+		.where({ id: req.params.id })
+		.update(modObject)
+		.then(() => res.status(200).json({ message: 'modifiée !' }))
+		.catch((error) => res.status(400).json({ error }));
+};

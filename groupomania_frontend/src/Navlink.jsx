@@ -13,9 +13,11 @@ export default function Navlink() {
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
-						<Nav className="justify-content-end">
+						<Nav>
 							<Nav.Item>
-								<Nav.Link href="/private/home">Home</Nav.Link>
+								<Nav.Link href="/private/home" className="nav-link">
+									Home
+								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
 								<Nav.Link href="/private/publications/add">Publier</Nav.Link>

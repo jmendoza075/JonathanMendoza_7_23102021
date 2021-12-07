@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useToken from '../custom_hook/useToken';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 export default function Login() {
 	const { token, setToken } = useToken();
@@ -45,50 +46,47 @@ export default function Login() {
 	return (
 		<div className="container mt-5">
 			<h2>Veuillez vous connecter</h2>
-			<form onSubmit={handleSubmit} className="row g-3">
-				<div className="form-group">
-					{error && (
-						<div className="alert alert-danger" role="alert">
-							{error}{' '}
-						</div>
-					)}
 
-					<label> Email</label>
+			{error && (
+				<div className="alert alert-danger" role="alert">
+					{error}{' '}
+				</div>
+			)}
 
-					<input
-						type="text"
+			<Form onSubmit={handleSubmit}>
+				<Form.Group className="mb-3" controlId="formBasicEmail">
+					<Form.Label>Email address</Form.Label>
+					<Form.Control
+						type="email"
+						placeholder="Enter email"
 						required
 						onChange={(e) => setEmail(e.target.value)}
-						className="form-control"
-					/>
-				</div>
-				<div className="form-group">
-					<label>Password</label>
+					></Form.Control>{' '}
+				</Form.Group>
 
-					<input
+				<Form.Group className="mb-3" controlId="formBasicPassword">
+					<Form.Label>Password</Form.Label>
+					<Form.Control
 						type="password"
+						placeholder="Password"
 						required
 						onChange={(e) => setPassword(e.target.value)}
-						className="form-control"
-					/>
-				</div>
+					></Form.Control>{' '}
+				</Form.Group>
 
-				<div>
-					<button type="submit" className="btn btn-primary btn-block">
-						Login
-					</button>
+				<Button variant="primary" type="submit">
+					Submit
+				</Button>
+				<hr />
 
-					<hr />
-
-					<Link
-						to="/signup"
-						activeclassname="active"
-						style={{ textDecoration: 'none' }}
-					>
-						<small>ou cliquez ici pour vous inscrire</small>
-					</Link>
-				</div>
-			</form>
+				<Link
+					to="/signup"
+					activeclassname="active"
+					style={{ textDecoration: 'none' }}
+				>
+					<small>ou cliquez ici pour vous inscrire</small>
+				</Link>
+			</Form>
 		</div>
 	);
 }

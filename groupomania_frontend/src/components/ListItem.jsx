@@ -68,7 +68,11 @@ const ListItem = ({
 
 				<small>par {prenom}</small>
 				<div>
-					<img src={imageUrl} alt="post_photo" width="400" />
+					<img
+						src={imageUrl}
+						alt="post_photo"
+						className="rounded mx-auto d-block img-fluid"
+					/>
 				</div>
 				<div>
 					<small>
@@ -83,16 +87,14 @@ const ListItem = ({
 				disabled={disabled}
 			>
 				Modifier la publication
-			</button>
-
+			</button>{' '}
 			<button
 				onClick={handleDelete}
 				className="btn btn-outline-danger btn-sm "
 				disabled={disabled}
 			>
 				Supprimer
-			</button>
-
+			</button>{' '}
 			<button
 				onClick={handleComment}
 				className="btn btn-outline-primary btn-sm"

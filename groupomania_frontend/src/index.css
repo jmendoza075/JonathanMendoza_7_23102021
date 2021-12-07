@@ -5,3 +5,13 @@ body {
 	min-height: 100vh;
 	background-image: ;
 }
+
+a {
+	color: #0853c2;
+}
+a:hover {
+	color: black;
+}
+.navbar-light .navbar-nav .nav-link {
+	color: white;
+}

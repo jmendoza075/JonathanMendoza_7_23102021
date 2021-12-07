@@ -60,16 +60,13 @@ export default function ListOneUser() {
 				))}
 			</div>
 			<hr />
-			<button onClick={handleCancel} className="btn btn-outline-secondary ">
+			<button onClick={handleCancel} className="btn btn-light ">
 				Cancel
 			</button>
-			<button onClick={handleModify} className="btn btn-outline-secondary ">
+			<button onClick={handleModify} className="btn btn-secondary ">
 				Modify
 			</button>
-			<button
-				onClick={handleDelete}
-				className="btn btn-outline-danger btn-block"
-			>
+			<button onClick={handleDelete} className="btn btn-danger btn-block">
 				Delete
 			</button>
 		</div>

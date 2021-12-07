@@ -21,30 +21,31 @@ export default function FilteredPostComment({ postId }) {
 	}, []);
 
 	return (
-		<div className="container">
-			<h4>Comments on this Post: </h4>
-
-			{comments
-				// eslint-disable-next-line
-				.filter((comment) => comment.publication_id == postId)
-				.map((filteredComment) => (
-					<div key={filteredComment.id}>
-						<Link
-							to={`/private/comments/${filteredComment.id}`}
-							activeclassname="active"
-							style={{ textDecoration: 'none' }}
-						>
-							<h5>{filteredComment.comment}</h5>
-							<small>comment id: {filteredComment.id} </small>
-							<small> by user id: {filteredComment.utilisateur_id}</small>
-							<small> about post id {filteredComment.publication_id}</small>
-							<small> on {filteredComment.date_cre}</small>
-							<p></p>
-							<small> voir le commentaire</small>
-							<hr />
-						</Link>
-					</div>
-				))}
+		<div className="container col-md-9 ">
+			<h4>Commentaires sur cette publication: </h4>
+			<div>
+				{comments
+					// eslint-disable-next-line
+					.filter((comment) => comment.publication_id == postId)
+					.map((filteredComment) => (
+						<div key={filteredComment.id}>
+							<Link
+								to={`/private/comments/${filteredComment.id}`}
+								activeclassname="active"
+								style={{ textDecoration: 'none' }}
+							>
+								<h6>{filteredComment.comment}</h6>
+								<small>comment id: {filteredComment.id} </small>
+								<small> by user id: {filteredComment.utilisateur_id}</small>
+								<small> about post id {filteredComment.publication_id}</small>
+								<small> on {filteredComment.date_cre}</small>
+								<p></p>
+								<small> voir le commentaire</small>
+								<hr />
+							</Link>
+						</div>
+					))}
+			</div>
 		</div>
 	);
 }

@@ -1,17 +1,17 @@
 import { Button } from 'react-bootstrap';
 const HomeAdmin = () => {
 	return (
-		<div className="container mt-3">
+		<div>
 			<h1>ADMIN Home</h1>{' '}
-			<Button href={'/private/publications/'} variant="btn btn-primary">
+			<Button href={'/private/publications/'} variant="light">
 				{' '}
 				All Posts
-			</Button>
-			<Button href={'/private/users/'} variant="btn btn-primary">
+			</Button>{' '}
+			<Button href={'/private/users/'} variant="light">
 				{' '}
 				All Users
-			</Button>
-			<Button href={'/private/comments/'} variant="btn btn-primary">
+			</Button>{' '}
+			<Button href={'/private/comments/'} variant="light">
 				{' '}
 				All Comments
 			</Button>

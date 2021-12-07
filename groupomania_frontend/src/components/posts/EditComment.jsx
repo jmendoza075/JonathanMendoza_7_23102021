@@ -33,34 +33,52 @@ const EditComment = () => {
 
 	return (
 		<div className="container mb-3 mt-3">
-			<h2>Edit My Comment #{params_id} </h2>
-			<form onSubmit={handleSubmit} className="row g-3">
-				<label>Post comment:</label>
-				<input
-					type="text"
-					required
-					value={comment}
-					onChange={(e) => setComment(e.target.value)}
-				/>
+			<h3>Modifier mon commentaire </h3>
+			<hr />
 
-				<label>Comment Date Modified:</label>
-				<input
-					type="date"
-					required
-					value={date_cre}
-					onChange={(e) => setDate_cre(e.target.value)}
-				></input>
+			<form onSubmit={handleSubmit} className="row g-3 mt-3">
+				<div className="row">
+					<div className="container col-md-9 ">
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon1">
+								Commentaire:
+							</label>
+							<textarea
+								className="form-control"
+								aria-describedby="basic-addon1"
+								placeholder="Commentaire"
+								type="text"
+								required
+								value={comment}
+								onChange={(e) => setComment(e.target.value)}
+							/>
+						</div>
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon2">
+								Date Modifiée:
+							</label>
+							<input
+								className="form-control"
+								aria-describedby="basic-addon1"
+								placeholder="Date"
+								type="date"
+								required
+								value={date_cre}
+								onChange={(e) => setDate_cre(e.target.value)}
+							></input>
+						</div>
 
-				<div className="d-grid gap-2 d-md-block">
-					<button
-						className="btn btn-outline-secondary "
-						type="button"
-						onClick={handleCancel}
-					>
-						Cancel
-					</button>
-
-					<button className="btn btn-primary">Modify Comment</button>
+						<div className="d-grid gap-2 d-md-block">
+							<button
+								className="btn btn-secondary "
+								type="button"
+								onClick={handleCancel}
+							>
+								Cancel
+							</button>{' '}
+							<button className="btn btn-primary">Modify Comment</button>
+						</div>
+					</div>
 				</div>
 			</form>
 		</div>

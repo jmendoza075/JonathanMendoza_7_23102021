@@ -73,16 +73,16 @@ export default function ListOneComment() {
 					</div>
 				))}
 			</div>
-			<button onClick={handleCancel} className="btn btn-outline-secondary ">
+			<button onClick={handleCancel} className="btn btn-secondary ">
 				Cancel
-			</button>
+			</button>{' '}
 			<button
 				onClick={handleModify}
 				className="btn btn-primary btn-block"
 				disabled={disabled}
 			>
 				Modifier
-			</button>
+			</button>{' '}
 			<button
 				onClick={handleDelete}
 				className="btn btn-danger btn-block"

@@ -42,7 +42,7 @@ export default function OnePost() {
 				))}
 			</div>
 
-			<button onClick={handleClick} className="btn btn-outline-secondary ">
+			<button onClick={handleClick} className="btn btn-secondary ">
 				À l'accueille
 			</button>
 

@@ -14,7 +14,7 @@ router.get('/', auth, function (req, res) {
 });
 
 router.post('/', auth, multer, postCtrl.createPost);
-
+router.put('/:id', auth, multer, postCtrl.modifyPost);
 /*
 router.post('/', auth, multer, function (req, res) {
 	//console.log(req.file);
@@ -24,15 +24,15 @@ router.post('/', auth, multer, function (req, res) {
 		.then(() => res.status(201).json({ message: 'enregistrée !' }))
 		.catch((error) => res.status(400).json({ error }));
 });
-*/
-router.put('/:id', auth, function (req, res) {
+
+router.put('/:id', auth, multer, function (req, res) {
 	db('publication')
 		.where({ id: req.params.id })
 		.update(req.body)
 		.then(() => res.status(200).json({ message: 'modifiée !' }))
 		.catch((error) => res.status(400).json({ error }));
 });
-
+*/
 router.delete('/:id', auth, function (req, res) {
 	db('publication')
 		.where({ id: req.params.id })

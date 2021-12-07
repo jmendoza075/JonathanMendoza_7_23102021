@@ -60,18 +60,17 @@ const EditUser = () => {
 			<hr />
 			<form onSubmit={updateUser}>
 				<div className="row">
-					<div className="col"></div>
-					<div className="col-9">
+					<div className="col" id="column_left"></div>
+					<div className="col-9" id="column_center">
 						<div className="input-group mb-3">
-							<div className="input-group-prepend">
-								<span className="input-group-text" id="basic-addon1">
-									Nom
-								</span>
-							</div>
+							<label className="input-group-text" id="basic-addon1">
+								Nom
+							</label>
 							<input
 								type="text"
 								className="form-control"
 								aria-describedby="basic-addon1"
+								placeholder="Nom"
 								required
 								value={nom}
 								onChange={(e) => {
@@ -80,15 +79,14 @@ const EditUser = () => {
 							/>
 						</div>
 						<div className="input-group mb-3">
-							<div className="input-group-prepend">
-								<span className="input-group-text" id="basic-addon1">
-									Prenom
-								</span>
-							</div>
+							<label className="input-group-text" id="basic-addon2">
+								Prenom
+							</label>
 							<input
 								type="text"
 								className="form-control"
-								aria-describedby="basic-addon1"
+								aria-describedby="basic-addon2"
+								placeholder="Prenom"
 								required
 								value={prenom}
 								onChange={(e) => {
@@ -97,15 +95,14 @@ const EditUser = () => {
 							/>
 						</div>
 						<div className="input-group mb-3">
-							<div className="input-group-prepend">
-								<span className="input-group-text" id="basic-addon1">
-									Email
-								</span>
-							</div>
+							<label className="input-group-text" id="basic-addon3">
+								Email
+							</label>
 							<input
 								type="text"
 								className="form-control"
-								aria-describedby="basic-addon1"
+								aria-describedby="basic-addon3"
+								placeholder="Email"
 								required
 								value={email}
 								onChange={(e) => {
@@ -114,16 +111,15 @@ const EditUser = () => {
 							/>
 						</div>
 						<div className="input-group mb-3">
-							<div className="input-group-prepend">
-								<span className="input-group-text" id="basic-addon1">
-									Password
-								</span>
-							</div>
+							<label className="input-group-text" id="basic-addon4">
+								Password
+							</label>
 							<input
 								type="text"
 								required
 								className="form-control"
-								aria-describedby="basic-addon1"
+								aria-describedby="basic-addon4"
+								placeholder="Password"
 								value={password}
 								onChange={(e) => {
 									setPassword(e.target.value);
@@ -132,17 +128,14 @@ const EditUser = () => {
 						</div>
 						<hr />
 						<div>
-							<button
-								onClick={handleCancel}
-								className="btn btn-outline-secondary "
-							>
+							<button onClick={handleCancel} className="btn btn-secondary ">
 								Cancel
 							</button>
 
 							<button className="btn btn-primary btn-block">Modifier</button>
 						</div>
 					</div>
-					<div className="col"></div>
+					<div className="col" id="column_right"></div>
 				</div>
 			</form>
 		</div>

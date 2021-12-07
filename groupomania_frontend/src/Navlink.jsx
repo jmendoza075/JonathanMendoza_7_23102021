@@ -6,7 +6,7 @@ import NavLogo from './NavLogo';
 export default function Navlink() {
 	return (
 		<div>
-			<Navbar className="navbar navbar-dark bg-primary  " expand="lg">
+			<Navbar className="navbar navbar-dark bg-primary " expand="lg">
 				<Container>
 					<Navbar.Brand href="/private/home">
 						<NavLogo />
@@ -28,11 +28,7 @@ export default function Navlink() {
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>
-			<Container></Container>{' '}
-			<Container className="mt-2">
-				<hr className="bg-danger border-2 border-top border-danger" />
-			</Container>
-			<Outlet />
+			<Container></Container> <Outlet />
 		</div>
 	);
 }

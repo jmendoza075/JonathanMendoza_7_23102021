@@ -54,38 +54,40 @@ export default function Login() {
 			)}
 
 			<Form onSubmit={handleSubmit}>
-				<Form.Group className="mb-3" controlId="formBasicEmail">
-					<Form.Label>Email address</Form.Label>
-					<Form.Control
-						type="email"
-						placeholder="Enter email"
-						required
-						onChange={(e) => setEmail(e.target.value)}
-					></Form.Control>{' '}
-				</Form.Group>
+				<div className="container col-md-9 ">
+					<Form.Group className="mb-3" controlId="formBasicEmail">
+						<Form.Label>Email address</Form.Label>
+						<Form.Control
+							type="email"
+							placeholder="Enter email"
+							required
+							onChange={(e) => setEmail(e.target.value)}
+						></Form.Control>{' '}
+					</Form.Group>
 
-				<Form.Group className="mb-3" controlId="formBasicPassword">
-					<Form.Label>Password</Form.Label>
-					<Form.Control
-						type="password"
-						placeholder="Password"
-						required
-						onChange={(e) => setPassword(e.target.value)}
-					></Form.Control>{' '}
-				</Form.Group>
+					<Form.Group className="mb-3" controlId="formBasicPassword">
+						<Form.Label>Password</Form.Label>
+						<Form.Control
+							type="password"
+							placeholder="Password"
+							required
+							onChange={(e) => setPassword(e.target.value)}
+						></Form.Control>{' '}
+					</Form.Group>
 
-				<Button variant="primary" type="submit">
-					Submit
-				</Button>
-				<hr />
+					<Button variant="primary" type="submit">
+						Submit
+					</Button>
+					<hr />
 
-				<Link
-					to="/signup"
-					activeclassname="active"
-					style={{ textDecoration: 'none' }}
-				>
-					<small>ou cliquez ici pour vous inscrire</small>
-				</Link>
+					<Link
+						to="/signup"
+						activeclassname="active"
+						style={{ textDecoration: 'none' }}
+					>
+						<small>ou cliquez ici pour vous inscrire</small>
+					</Link>
+				</div>
 			</Form>
 		</div>
 	);

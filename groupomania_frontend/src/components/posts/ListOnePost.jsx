@@ -37,7 +37,7 @@ export default function OnePost() {
 						<p>Publié par l'utilisateur: {mapPost.utilisateur_id}</p>
 						<p>Post id #: {mapPost.id}</p>
 						<p>{mapPost.text}</p>
-						<p>on {mapPost.date_cre}</p>
+						<p>le {mapPost.date_cre}</p>
 					</div>
 				))}
 			</div>

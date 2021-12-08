@@ -20,7 +20,6 @@ const EditPost = () => {
 			.then((response) => {
 				const getPost = response.data;
 				setTitre(getPost[0].titre);
-				setDate_mod(getPost[0].date_mod);
 				setText(getPost[0].text);
 			})
 			.catch((error) => console.error(`Error:${error}`));
@@ -46,13 +45,16 @@ const EditPost = () => {
 	fileNData.append('text', text);
 	fileNData.append('date_cre', date_mod);
 
+	console.log(date_mod);
+
 	const payLoad = !file ? onlyData : fileNData;
 
-	const modifyPost = () => {
+	const modifyPost = (e) => {
+		e.preventDefault();
 		axios
 			.put(`${url}${params.id}`, payLoad)
 			.then((response) => {
-				console.log(`post ${params_id} modified`);
+				alert(`post ${params_id} modifié`);
 				navigate('/private/home');
 			})
 			.catch((error) => console.error(`Error:${error}`));
@@ -67,81 +69,81 @@ const EditPost = () => {
 			<h2>Modifier la publication</h2>
 			<small> #{params_id} </small>
 			<hr />
-			<div className="row">
-				<div className="col" id="col-left"></div>
-				<div className="col-md-9">
-					<div className="input-group mb-3">
-						<label className="input-group-text" id="basic-addon1">
-							Titre
-						</label>
-						<input
-							className="form-control"
-							aria-describedby="basic-addon1"
-							placeholder="Titre"
-							type="text"
-							value={titre}
-							onChange={(e) => {
-								setTitre(e.target.value);
-							}}
-						/>
-					</div>
-					<div className="input-group mb-3">
-						<label className="input-group-text" id="basic-addon2">
-							Texte
-						</label>
-						<textarea
-							className="form-control"
-							aria-describedby="basic-addon2"
-							placeholder="Texte"
-							type="text"
-							value={text}
-							onChange={(e) => {
-								setText(e.target.value);
-							}}
-						/>
-					</div>
-					<div className="input-group mb-3">
-						<label className="input-group-text" id="basic-addon3">
-							Date:
-						</label>
-						<input
-							className="form-control"
-							aria-describedby="basic-addon3"
-							placeholder="Date"
-							type="date"
-							value={date_mod}
-							onChange={(e) => {
-								setDate_mod(e.target.value);
-							}}
-						/>
-					</div>
+			<form onSubmit={modifyPost}>
+				<div className="row">
+					<div className="col" id="col-left"></div>
+					<div className="col-md-9">
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon1">
+								Titre
+							</label>
+							<input
+								className="form-control"
+								aria-describedby="basic-addon1"
+								placeholder="Titre"
+								type="text"
+								value={titre}
+								onChange={(e) => {
+									setTitre(e.target.value);
+								}}
+							/>
+						</div>
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon2">
+								Texte
+							</label>
+							<textarea
+								className="form-control"
+								aria-describedby="basic-addon2"
+								placeholder="Texte"
+								type="text"
+								value={text}
+								onChange={(e) => {
+									setText(e.target.value);
+								}}
+							/>
+						</div>
+						<div className="input-group mb-3">
+							<label className="input-group-text" id="basic-addon3">
+								Date:
+							</label>
+							<input
+								className="form-control"
+								aria-describedby="basic-addon3"
+								placeholder="Date"
+								type="date"
+								required
+								value={date_mod}
+								onChange={(e) => {
+									setDate_mod(e.target.value);
+								}}
+							/>
+						</div>
 
-					<small>Ajouter une image</small>
-					<div className="input-group mb-3">
-						<label id="basic-addon4"></label>
-						<input
-							className="form-control"
-							aria-describedby="basic-addon4"
-							placeholder="Image"
-							type="file"
-							required
-							name="file"
-							onChange={saveFile}
-						></input>
-					</div>
+						<small>Ajouter une image</small>
+						<div className="input-group mb-3">
+							<label id="basic-addon4"></label>
+							<input
+								className="form-control"
+								aria-describedby="basic-addon4"
+								placeholder="Image"
+								type="file"
+								name="file"
+								onChange={saveFile}
+							></input>
+						</div>
 
-					<div className="d-grid gap-2 d-md-block">
-						<button onClick={handleCancel} className="btn btn-secondary ">
-							Cancel
-						</button>
+						<div className="d-grid gap-2 d-md-block">
+							<button onClick={handleCancel} className="btn btn-secondary ">
+								Cancel
+							</button>
 
-						<button onClick={modifyPost} className="btn btn-primary btn-block">
-							Modifier
-						</button>
+							<button className="btn btn-primary btn-block">Modifier</button>
+						</div>
 					</div>
+					<div className="col" id="col-right"></div>
 				</div>
-				<div className="col" id="col-right"></div>
-			</div>
+			</form>
 			<hr />
 		</div>
 	);

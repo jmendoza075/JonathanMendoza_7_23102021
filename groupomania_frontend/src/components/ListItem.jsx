@@ -46,7 +46,7 @@ const ListItem = ({
 		axios
 			.delete(`http://localhost:8081/api/publication/${id}`)
 			.then((response) => {
-				alert(`comment ${id} deleted`);
+				alert(`publication ${id} est supprimée`);
 				window.location.reload();
 				navigate('/private/home');
 			})
@@ -57,51 +57,60 @@ const ListItem = ({
 	};
 
 	return (
-		<li className="list-group-item  mt-3 btn p-2">
-			<Link
-				to={`/private/publications/${id}`}
-				activeclassname="active"
-				style={{ textDecoration: 'none' }}
-			>
-				<h2>{titre}</h2>
-				<h6> {text}</h6>
+		<div className="row">
+			<div className="col" id="column_left"></div>
 
-				<small>par {prenom}</small>
-				<div>
-					<img
-						src={imageUrl}
-						alt="post_photo"
-						className="rounded mx-auto d-block img-fluid"
-					/>
-				</div>
-				<div>
-					<small>
-						post #{id}, le: {date}{' '}
-					</small>
-				</div>
-			</Link>
-			<hr />
-			<button
-				onClick={handleModify}
-				className="btn btn-outline-secondary btn-sm "
-				disabled={disabled}
-			>
-				Modifier la publication
-			</button>{' '}
-			<button
-				onClick={handleDelete}
-				className="btn btn-outline-danger btn-sm "
-				disabled={disabled}
-			>
-				Supprimer
-			</button>{' '}
-			<button
-				onClick={handleComment}
-				className="btn btn-outline-primary btn-sm"
-			>
-				Commenter
-			</button>
-		</li>
+			<div className="col-10" id="column_center">
+				<ul className="list-group">
+					<li className="list-group-item  mt-3 btn p-2">
+						<Link
+							to={`/private/publications/${id}`}
+							activeclassname="active"
+							style={{ textDecoration: 'none' }}
+						>
+							<h2>{titre}</h2>
+							<h6> {text}</h6>
+
+							<small>par {prenom}</small>
+							<div>
+								<img
+									src={imageUrl}
+									alt="post_photo"
+									className="rounded mx-auto d-block img-fluid"
+								/>
+							</div>
+							<div>
+								<small>
+									post #{id}, le: {date}{' '}
+								</small>
+							</div>
+						</Link>
+						<hr />
+						<button
+							onClick={handleModify}
+							className="btn btn-outline-secondary btn-sm "
+							disabled={disabled}
+						>
+							Modifier la publication
+						</button>{' '}
+						<button
+							onClick={handleDelete}
+							className="btn btn-outline-danger btn-sm "
+							disabled={disabled}
+						>
+							Supprimer
+						</button>{' '}
+						<button
+							onClick={handleComment}
+							className="btn btn-outline-primary btn-sm"
+						>
+							Commenter
+						</button>
+					</li>
+				</ul>
+			</div>
+			<div className="col" id="column_left"></div>
+		</div>
 	);
 };
 

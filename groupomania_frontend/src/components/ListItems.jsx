@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ListItems = ({ children }) => {
-	return <ul className="d-flex flex-column-reverse">{children}</ul>;
+	return <div className="d-flex flex-column-reverse">{children}</div>;
 };
 
 export default ListItems;

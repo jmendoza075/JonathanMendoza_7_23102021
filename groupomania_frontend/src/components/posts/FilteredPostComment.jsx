@@ -35,10 +35,10 @@ export default function FilteredPostComment({ postId }) {
 								style={{ textDecoration: 'none' }}
 							>
 								<h6>{filteredComment.comment}</h6>
-								<small>comment id: {filteredComment.id} </small>
-								<small> by user id: {filteredComment.utilisateur_id}</small>
-								<small> about post id {filteredComment.publication_id}</small>
-								<small> on {filteredComment.date_cre}</small>
+								<small>commentaire id: {filteredComment.id} </small>
+								<small> par user id: {filteredComment.utilisateur_id}</small>
+								<small> sur {filteredComment.publication_id}</small>
+								<small> le {filteredComment.date_cre}</small>
 								<p></p>
 								<small> voir le commentaire</small>
 								<hr />

@@ -20,6 +20,7 @@ import EditPost from './components/posts/EditPost';
 import NewComment from './components/posts/NewComment';
 import EditComment from './components/posts/EditComment';
 import PrivateOutlet from './routes/PrivateOutlet';
+import AdminOnly from './routes/AdminOnly';
 import Test from './components/Test';
 import Welcome from './routes/Welcome';
 
@@ -36,7 +37,6 @@ export default function App() {
 
 					<Route path="/private" element={<PrivateOutlet />}>
 						<Route path="home" element={<Home />} />
-						<Route path="users" element={<Users />} />
 
 						<Route path="users/:id" element={<ListOneUser />} />
 						<Route path="users/edit/:id" element={<EditUser />} />
@@ -51,7 +51,9 @@ export default function App() {
 						<Route path="comments/:id" element={<ListOneComment />} />
 						<Route path="comments/edit/:id" element={<EditComment />} />
 					</Route>
-
+					<Route path="/adminOnly" element={<AdminOnly />}>
+						<Route path="users" element={<Users />} />
+					</Route>
 					<Route
 						path="*"
 						element={

@@ -18,6 +18,14 @@ const EditUser = () => {
 
 	const url = 'http://localhost:8081/api/user/';
 
+	//see if user's role admin
+	const getRole = () => {
+		const tokenString = localStorage.getItem('token');
+		const userToken = JSON.parse(tokenString);
+		return userToken?.role;
+	};
+	const [role] = useState(getRole());
+
 	// Get the user
 	useEffect(() => {
 		axios
@@ -45,12 +53,10 @@ const EditUser = () => {
 			.put(`${url}${params.id}`, userMod)
 			.then((response) => {
 				console.log(`post ${params_id} modified`);
+				alert('Utilisateur modifié ! ');
 			})
 			.catch((error) => console.error(`Error:${error}`));
-
-		alert('Utilisateur modifié ! Veuillez vous reconnecter');
-		localStorage.clear();
-		navigate('/login');
+		role === 'admin' ? navigate('/private/home') : navigate('/login');
 	};
 
 	return (

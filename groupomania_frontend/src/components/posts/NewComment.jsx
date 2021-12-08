@@ -105,10 +105,12 @@ const NewComment = () => {
 								type="button"
 								onClick={handleCancel}
 							>
-								Cancel{' '}
+								Annuler{' '}
 							</button>
 
-							<button className="btn btn-primary">Add Comment</button>
+							<button className="btn btn-primary">
+								Ajouter un commentaire
+							</button>
 						</div>
 					</div>
 					<div className="col" id="column_right"></div>

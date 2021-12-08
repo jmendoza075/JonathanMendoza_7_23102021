@@ -9,8 +9,18 @@ export default function ListOneUser() {
 
 	const url = 'http://localhost:8081/api/user/';
 	const [user, setUser] = useState([]);
+	const [userId, setUserId] = useState();
+	const [disabled, setDisabled] = useState(true);
 
 	const navigate = useNavigate();
+
+	//see if user's role admin
+	const getRole = () => {
+		const tokenString = localStorage.getItem('token');
+		const userToken = JSON.parse(tokenString);
+		return userToken?.role;
+	};
+	const [role] = useState(getRole());
 
 	useEffect(() => {
 		axios
@@ -18,9 +28,16 @@ export default function ListOneUser() {
 			.then((response) => {
 				const getUser = response.data;
 				setUser(getUser);
+				setUserId(getUser[0].id);
 			})
 			.catch((error) => console.error(`Error:${error}`));
-	}, [params.id]);
+		const userToken = JSON.parse(localStorage.getItem('token'));
+		const loggedUser = userToken.userId;
+
+		if (role === 'admin' || loggedUser === userId) {
+			setDisabled(false);
+		}
+	}, [params.id, userId, role]);
 
 	const handleDelete = () => {
 		axios
@@ -28,8 +45,8 @@ export default function ListOneUser() {
 			.then((response) => {
 				console.log(`user ${params_id} deleted`);
 				alert('Utilisateur supprimé !');
-				localStorage.clear();
-				navigate('/');
+
+				role === 'admin' ? navigate('/private/home') : navigate('/');
 			})
 			.catch((error) => console.error(`Error:${error}`));
 	};
@@ -63,10 +80,18 @@ export default function ListOneUser() {
 			<button onClick={handleCancel} className="btn btn-light ">
 				Cancel
 			</button>
-			<button onClick={handleModify} className="btn btn-secondary ">
+			<button
+				onClick={handleModify}
+				className="btn btn-secondary "
+				disabled={disabled}
+			>
 				Modify
 			</button>
-			<button onClick={handleDelete} className="btn btn-danger btn-block">
+			<button
+				onClick={handleDelete}
+				className="btn btn-danger btn-block"
+				disabled={disabled}
+			>
 				Delete
 			</button>
 		</div>

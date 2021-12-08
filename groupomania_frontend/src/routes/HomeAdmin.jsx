@@ -7,7 +7,7 @@ const HomeAdmin = () => {
 				{' '}
 				All Posts
 			</Button>{' '}
-			<Button href={'/private/users/'} variant="light">
+			<Button href={'/adminOnly/users/'} variant="light">
 				{' '}
 				All Users
 			</Button>{' '}

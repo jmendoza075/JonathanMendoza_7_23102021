@@ -45,8 +45,6 @@ const EditPost = () => {
 	fileNData.append('text', text);
 	fileNData.append('date_cre', date_mod);
 
-	console.log(date_mod);
-
 	const payLoad = !file ? onlyData : fileNData;
 
 	const modifyPost = (e) => {
